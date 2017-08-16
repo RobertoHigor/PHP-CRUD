@@ -1,0 +1,74 @@
+/* HEAD NAVI */
+.head-nav ul {
+    background-color:rgb(33, 33, 33);  
+    box-shadow:0 0 0 2px rgba(0,0,0,0.25);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    list-style-type: none;
+}
+
+.head-nav li {
+    float: left;
+}
+.head-nav li a{
+    color: #D3D3D3;
+    text-align: center;
+    padding: 14px 16px;
+    display: block;
+    text-decoration: none;
+}
+
+.head-nav li a:hover {
+    color: white;
+    background-color: #111;
+}
+
+/* Tags Principais */
+body {   
+    min-height: 100%;
+    margin: 0;
+    padding: 0;    
+}
+
+.body {
+    
+    background-image:url(//images-2.gog.com/1b30c9ce3907eab6bea758cb770a736700d3b0acd6bd1cdbda5a41d5a4eaf663.jpg);
+    background-color: rgb(204, 204, 204);
+    background-repeat: no-repeat;
+}
+
+.conteudo {
+    margin:10; 
+}
+
+footer {
+    text-align: center;  
+    position: absolute;
+    bottom: 0;
+    width:100%;
+    height:40px;
+}
+
+.footer {
+    background-color: black;
+    color: #D3D3D3;
+}
+
+/* FORM */
+.conteudo input{
+    margin: 5;
+    display:table-cell;
+}
+
+.conteudo label{
+    display:table-cell;
+}
+
+.conteudo form {
+    display:table;
+}
+
+.conteudo #linha{
+    display:table-row;
+}
