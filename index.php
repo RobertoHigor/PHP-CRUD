@@ -21,6 +21,17 @@
                 </form>
                 Resultado <input type="number"name="resultado" value=<?php echo somar($n1, $n2) ?> />
                 
+                <?php
+                include "src/Aluno.php";              
+    $a = new Aluno();
+    $a->matricula = "102016-02";
+    $res = $a->listar();
+    
+
+    while ($row = $res->fetch_assoc()) {
+        echo "Nome = " . $row['nome'] . " Matricula = " .$row['matricula'] . "\n</br>";
+    }
+?>
         </div> <!-- fim div conteudo !-->
 
         <!--Rodapé-->
