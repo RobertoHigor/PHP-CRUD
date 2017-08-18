@@ -21,30 +21,50 @@
 
 .head-nav li a:hover {
     color: white;
-    background-color: #111;
+    /*background-color: #111;*/
 }
 
 /* Tags Principais */
-body {   
-    min-height: 100%;
+* {
     margin: 0;
-    padding: 0;    
+    padding: 0;  
 }
 
-.body {
-    
-    background-image:url(img//fundo.jpg);
+body {    
+   background-image:url(img//fundo.jpg);
     background-color: rgb(204, 204, 204);
     background-repeat: no-repeat;
+    min-height: 100%;   
 }
 
 .conteudo {
-    margin:10; 
+    margin:auto;
+    padding:1vh;
+    width: 50%;
+    color:white;
+    height:85%;   
+}
+
+table {
+    /* Tirar o gap da borda*/
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 3px 3px 1px rgba(0,0,0,0.25);
+}
+td, th {    
+    text-align: left;
+    padding: 8px;
+    padding-right: 10vw;
+    border-right: 1px solid rgba(0, 0, 0, 0.29);
+}
+
+tr:nth-child(even) {
+    background-color: rgba(15, 13, 15, 0.29);
 }
 
 footer {
     text-align: center;  
-    position: absolute;
+    position: relative;
     bottom: 0;
     width:100%;
     height:40px;

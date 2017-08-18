@@ -10,6 +10,7 @@
                         <li><a href="index.php">Início</a></li>
                         <li><a href="Livros.php">Livros</a></li>
                         <li><a href="#editoras">Editoras</a></li>
+                        <li><a href="AutorListar.php">Autor</a></li>
                         <li><a href="#biblioteca">Biblioteca</a></li>
                 </ul>
        </nav>
