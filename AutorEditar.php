@@ -9,7 +9,9 @@
         $a = new Autor();
         //$_SESSION["codAutor"] = $_POST['codAutor'];
         $a->setCodAutor($_POST["codAutor"]);
-        $a->listarPorId($a);
+       // $a->listarPorId($a);
+
+        $a->deletarPorID($a);
 ?>
      <!-- Conteúdo do site !-->
     <div class = "conteudo">  

@@ -43,6 +43,12 @@ class Autor{
         }
     }
 
+    public function deletarPorID(Autor $a){
+        $stmt = $this->con->prepare("DELETE FROM Autor WHERE codAutor = ?");
+        $stmt->bind_param('i', $a->codAutor);
+        $stmt->execute();  
+    }
+
     public function isNull(Autor $a){
         if (!$a->nome){
             $a->nome = NULL;

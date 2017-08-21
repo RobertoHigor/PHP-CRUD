@@ -27,6 +27,7 @@
                 <form method=\"post\" action=\"AutorEditar.php\">";
             echo "<input type=\"hidden\" name=\"codAutor\" value=\"".$row['codAutor']."\"</input>";
             echo "<input type=\"submit\" value=\"Editar\"></input>";
+            echo "<input type=\"submit\" value=\"Deletar\"></input>";
             echo "</form>
                   </td>";
             echo "</tr>";
