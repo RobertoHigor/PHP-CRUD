@@ -10,8 +10,13 @@
                         <li><a href="index.php">Início</a></li>
                         <li><a href="Livros.php">Livros</a></li>
                         <li><a href="#editoras">Editoras</a></li>
-                        <li><a href="AutorListar.php">Autor</a></li>
+                        <li class="menu"><a href="AutorListar.php">Autor</a>
+                            <div class="submenu">
+                                <a href="AutorListar.php">Listar</a>
+                                <a href="AutorCadastro.php">Cadastrar</a>
+                            </div>
+                        </li>
                         <li><a href="#biblioteca">Biblioteca</a></li>
                 </ul>
-       </nav>
+ </nav>
 <!-- Fim do menu -->

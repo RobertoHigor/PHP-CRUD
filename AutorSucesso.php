@@ -15,9 +15,6 @@
         $a->setTelefone($_POST['telefone']);
 
         $a->alterar($a);
-        if ($a->getError()){
-            echo $a->getError() . "oi";
-        }
     ?>
 
     </div> <!-- fim div conteudo !-->

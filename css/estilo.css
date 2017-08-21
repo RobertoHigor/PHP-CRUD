@@ -1,37 +1,76 @@
-/* HEAD NAVI */
-.head-nav ul {
-    background-color:rgb(33, 33, 33);  
-    box-shadow:0 0 0 2px rgba(0,0,0,0.25);
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    list-style-type: none;
+/* 
+*
+*
+    HEAD NAVI 
+*
+*/
+.head-nav{
+    background-color:black;
+}
+/* Mostrar LI do lado */
+.head-nav li{    
+    display:inline-block;
+    padding:15px;
 }
 
-.head-nav li {
-    float: left;
-}
-.head-nav li a{
+/* tags a com letra cinza e espaçamento*/
+.head-nav li a {
+    padding:10px;
+    text-decoration:none;
     color: #D3D3D3;
-    text-align: center;
-    padding: 14px 16px;
-    display: block;
-    text-decoration: none;
 }
 
+/* Mudar a cor da letra para branca ao passar o mouse*/
 .head-nav li a:hover {
     color: white;
-    /*background-color: #111;*/
 }
 
-/* Tags Principais */
+/* 
+*
+*
+    SUBMENU 
+*
+*/
+.head-nav .submenu a{
+    color: black;
+    padding: 9px 5px;
+    display: block;
+    background-color: rgb(204, 204, 204);
+}
+/* posicionar o submenu sem contar com espaço na div e esconder */
+.submenu{
+    position:absolute;
+    margin-top:10px;
+    display:none;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    min-width:120px;
+}
+
+/* mostrar submenu quando passar o mouse*/
+.menu:hover .submenu{  
+    display:block;
+    z-index: 1;
+
+}
+
+.submenu a:hover {
+    background-color: #696464
+}
+
+
+/* 
+*
+*
+    TAGS Principais 
+*
+*/
 * {
     margin: 0;
     padding: 0;  
 }
 
 body {    
-   background-image:url(img//fundo.jpg);
+    background-image:url(img//fundo.jpg);
     background-color: rgb(204, 204, 204);
     background-repeat: no-repeat;
     min-height: 100%;   
@@ -40,8 +79,8 @@ body {
 .conteudo {
     margin:auto;
     padding:1vh;
-    width: 50%;
-    color:white;
+    position:relative;
+    width:50%;
     height:85%;   
 }
 
@@ -54,7 +93,7 @@ table {
 td, th {    
     text-align: left;
     padding: 8px;
-    padding-right: 10vw;
+    padding-right: 7vw;
     border-right: 1px solid rgba(0, 0, 0, 0.29);
 }
 
@@ -64,7 +103,7 @@ tr:nth-child(even) {
 
 footer {
     text-align: center;  
-    position: relative;
+    position: absolute;
     bottom: 0;
     width:100%;
     height:40px;
@@ -72,23 +111,53 @@ footer {
 
 .footer {
     background-color: black;
-    color: #D3D3D3;
+    color: #FFFFFF;
 }
 
 /* FORM */
-.conteudo input{
+/* Espaço entre os inputs e colocar como uma célula da tabela*/
+input {
     margin: 5;
     display:table-cell;
 }
 
-.conteudo label{
+input[type=submit]{
+    background-color:#1F201F;
+    border:none;
+    padding: 5px 18px;
+    color:#F5F5F5;
+    font-size:15px;
+}
+input[type=submit]:hover{
+    background-color:#4E4D4D;
+}
+/* Colocar o nome (da label) como uma célula da tabela, para poder ajustar*/
+label{
     display:table-cell;
 }
 
-.conteudo form {
+form {
     display:table;
 }
 
-.conteudo #linha{
+/* cada tag linha é uma linha inteira da tabela */
+.linha{
     display:table-row;
+}
+
+fieldset{
+    box-shadow: 0 0px 6px 1px rgba(0,0,0,0.25);
+    background-color: rgba(156, 154, 156, 0.29);
+    border-radius: 5px;
+    border: 2px solid rgba(45, 45, 45, 0.30);
+    padding: 10px;
+    padding-top:40px;
+    position:relative;
+    
+}
+
+legend {
+    font-size:22px;
+    position: absolute;
+    top:10px;    
 }

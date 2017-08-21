@@ -1,0 +1,109 @@
+/* HEAD NAVI */
+.head-nav ul {
+    background-color:rgb(33, 33, 33);  
+    box-shadow:0 0 0 2px rgba(0,0,0,0.25);
+    margin: 0; 
+
+    position: relative;
+    display: inline-block;
+
+    overflow: hidden;
+    list-style-type: none;
+}
+
+.head-nav li {
+    float: left;
+}
+
+.head-nav li a{
+    color: #D3D3D3;
+    text-align: center;
+    padding: 14px 16px;
+    display: block;
+    text-decoration: none;
+}
+
+.head-nav .submenu a{
+    color:red;
+}
+
+.submenu{
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.head-nav li a:hover {
+    color: white;
+    /*background-color: #111;*/
+}
+
+/* Tags Principais */
+* {
+    margin: 0;
+    padding: 0;  
+}
+
+body {    
+   background-image:url(img//fundo.jpg);
+    background-color: rgb(204, 204, 204);
+    background-repeat: no-repeat;
+    min-height: 100%;   
+}
+
+.conteudo {
+    margin:auto;
+    padding:1vh;
+    width: 50%;
+    color:white;
+    height:85%;   
+}
+
+table {
+    /* Tirar o gap da borda*/
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 3px 3px 1px rgba(0,0,0,0.25);
+}
+td, th {    
+    text-align: left;
+    padding: 8px;
+    padding-right: 10vw;
+    border-right: 1px solid rgba(0, 0, 0, 0.29);
+}
+
+tr:nth-child(even) {
+    background-color: rgba(15, 13, 15, 0.29);
+}
+
+footer {
+    text-align: center;  
+    position: relative;
+    bottom: 0;
+    width:100%;
+    height:40px;
+}
+
+.footer {
+    background-color: black;
+    color: #D3D3D3;
+}
+
+/* FORM */
+.conteudo input{
+    margin: 5;
+    display:table-cell;
+}
+
+.conteudo label{
+    display:table-cell;
+}
+
+.conteudo form {
+    display:table;
+}
+
+.conteudo #linha{
+    display:table-row;
+}

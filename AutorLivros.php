@@ -16,6 +16,7 @@
           
     <?php 
         $a = new Autor();
+        $l = new Livros();
         $res = $a->listar();
        
         while ($row = $res->fetch_assoc()) {

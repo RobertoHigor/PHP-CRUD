@@ -18,14 +18,14 @@
             <legend> Autor </legend>          
             
             <p id="linha">
-                <label for="nome">Nome: </label><input type="text" required id ="nome" name="nome" value=<?php echo $a->getNome()?>></input>      
+                <label for="nome">Nome: </label><input type="text"  id ="nome" name="nome" value=<?php echo $a->getNome()?>></input>      
             </p>
             <p id="linha">        
-                <label for="email">Email: </label><input type="email" required id ="email" name="email" value=<?php echo $a->getEmail()?>></input>
+                <label for="email">Email: </label><input type="email" id ="email" name="email" value=<?php echo $a->getEmail()?>></input>
             </p>
             <p id="linha">
                 <label for="telefone">Telefone: </label><input type="number" id ="telefone" name="telefone" value=<?php echo $a->getTelefone()?>></input>
-                <input type="hidden" name="codAutor" value="<?php echo $_SESSION['codAutor']?>"></input>
+                <input type="hidden" name="codAutor" value="<?php echo $_POST['codAutor']?>"></input>
                 <input type="submit" value="Alterar"></input>
             </p>
             </fieldset>   

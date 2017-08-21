@@ -12,8 +12,9 @@ class Autor{
         $this->con = new Banco();
     }
 
-    public function inserir(Autor$a){
-        $stmt = $this->con->prepare("INSERT INTO Autor (nome, email, telefone) VALUES (?, ?, ?)"); 
+    public function inserir(Autor $a){
+        $stmt = $this->con->prepare("INSERT INTO Autor (nome, email, telefone) VALUES (?, ?, ?)");    
+        $a = $this->isNull($a);  
         $stmt->bind_param('ssi', $a->nome, $a->email, $a->telefone);       
         if($stmt->execute()){
             echo "Autor cadastrado";
@@ -24,7 +25,9 @@ class Autor{
 
     public function listar(){
         $stmt = $this->con->prepare("SELECT codAutor, nome, email, telefone FROM Autor");
-        $stmt->execute();
+        if(!$stmt->execute()){         
+            echo "Erro na atualização: ". $stmt->error;
+        }  
         return $stmt->get_result();
     }
 
@@ -40,18 +43,31 @@ class Autor{
         }
     }
 
-    public function alterar(Autor $a){
-        $stmt = $this->con->prepare("UPDATE Autor SET nome = ?, email = ?, telefone = ? WHERE codAutor = ?"); 
-        $stmt->bind_param('ssii', $a->nome, $a->email, $a->telefone, $a->codAutor);
-        if($stmt->execute()){
-            return $stmt->error;
-        }else {
-            return $stmt->error;
-        } 
+    public function isNull(Autor $a){
+        if (!$a->nome){
+            $a->nome = NULL;
+        }
+
+        if (!$a->codAutor){
+            $a->codAutor = NULL;
+        }
+
+        if (!$a->email){
+            $a->email = NULL;
+        }
+        return $a;
     }
 
-    public function getError(){
-
+    public function alterar(Autor $a){
+        $stmt = $this->con->prepare("UPDATE Autor SET nome = ?, email = ?, telefone = ? WHERE codAutor = ?"); 
+        $a = $this->isNull($a);
+        $stmt->bind_param('ssii', $a->nome, $a->email, $a->telefone, $a->codAutor);  
+       
+        if($stmt->execute()){
+            echo "Autor atualizado" .$stmt->error;
+        }else {
+            echo "Erro na atualização: ". $stmt->error;
+        }  
     }
 
     public function getCodAutor(){
