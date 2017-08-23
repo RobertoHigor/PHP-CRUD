@@ -7,7 +7,7 @@
 
        <!-- Conteúdo do site !-->
        <div class = "conteudo">
-                <form action="primeirapagina.php" method="post">
+                <form action="#" method="post">
                         <fieldset>
                                 <legend> Campo </legend>
                                 <p id="linha">

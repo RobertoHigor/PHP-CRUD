@@ -24,10 +24,10 @@
                 <label for="nome">Nome: </label><input type="text" id ="nome" name="nome"></input>      
             </p>
             <p class="linha">        
-                <label for="email">Email: </label><input type="email" id ="email" name="email"></input>
+                <label for="email">Email: </label><input type="text" id ="email" name="email"></input>
             </p>
             <p class="linha">
-                <label for="telefone">Telefone: </label><input type="number" id ="telefone" name="telefone"></input>
+                <label for="telefone">Telefone: </label><input type="text" id ="telefone" name="telefone"></input>
                 <input type="submit" value="Cadastrar"></input>
             </p>
             </fieldset>   

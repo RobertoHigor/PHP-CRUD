@@ -15,6 +15,9 @@
         </tr>
           
     <?php 
+    //CONTINUAR SESSAO
+    session_start();
+    echo "CNPJ DA EDITORA TEM QUE SER 44455566: " . $_SESSION['nome'];
         $a = new Autor();
         $res = $a->listar();
        
