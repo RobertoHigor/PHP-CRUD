@@ -25,7 +25,7 @@
             <th>Nome Fantasia</th>
             <th>Email</th>
             <th>Telefone</th>
-            <!--<th>Endereço</th>-->
+            <th>Endereço</th>
             <th>Opções</th>
         </tr>
           
@@ -38,8 +38,8 @@
             echo "<tr>". 
                     "<td>" . $row['CNPJ'] . "</td>".
                     "<td>" . $row['nomeFantasia'] ."</td>". 
-                    "<td>" . $row['telefone'] ."</td>". 
-                    //"<td>" . $row['endereco'] ."</td>". 
+                    "<td>" . $row['email'] ."</td>". 
+                    "<td>" . $row['endereco'] ."</td>". 
                     "<td>" . $row['telefone']. "</td>";   
             echo "<td>
                 <form method=\"post\" action=\"EditoraCadastro.php\">";
