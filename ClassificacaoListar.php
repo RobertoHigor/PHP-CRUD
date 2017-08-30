@@ -1,4 +1,4 @@
-<?php require_once "src/Autor.php" ?>
+<?php require_once "src/Classificacao.php" ?>
 
 <html>
     <!-- Menu !-->
@@ -8,12 +8,12 @@
      <!-- Conteúdo do site !-->
     <?php
     session_start();
-    $a = new Autor();
+    $C = new Classificacao();
     if ($_POST){
-        $_SESSION['autor'] = $_POST;
-        if ($_SESSION['autor']['opc'] == "del"){
-            $a->setCodAutor($_SESSION['autor']['codAutor']);
-            $a->deletarPorID($a);
+        $_SESSION['classificacao'] = $_POST;
+        if ($_SESSION['classificacao']['opc'] == "del"){
+            $C->setCodClassificacao($_SESSION['classificacao']['CDD']);
+            $C->deletarPorID($C);
         }
     }
 
@@ -21,29 +21,27 @@
     <div class = "conteudo">  
     <table>
         <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Telefone</th>
+            <th>CDD</th>
+            <th>Nome</th>           
             <th>Opções</th>
         </tr>
           
     <?php 
     //CONTINUAR SESSAO
         
-        $res = $a->listar();
+        $res = $C->listar();
        
         while ($row = $res->fetch_assoc()) {
             echo "<tr>". 
-                    "<td>" . $row['nome'] . "</td>".
-                    "<td>" . $row['email'] ."</td>". 
-                    "<td>" . $row['telefone']. "</td>";   
+                    "<td>" . $row['CDD'] . "</td>".
+                    "<td>" . $row['nome'] ."</td>";                     
             echo "<td>
-                <form method=\"post\" action=\"AutorCadastro.php\">";
-            echo "<input type=\"hidden\" name=\"codAutor\" value=\"".$row['codAutor']."\"</input>";
+                <form method=\"post\" action=\"ClassificacaoCadastro.php\">";
+            echo "<input type=\"hidden\" name=\"CDD\" value=\"".$row['CDD']."\"</input>";
             echo "<input type=\"hidden\" name=\"opc\" value=\"alt\"</input>";
             echo "<input type=\"submit\" value=\"Editar\"></input></form>";
             echo "<form method=\"post\" action\"#\"><input type=\"submit\" value=\"Deletar\"></input>";
-            echo "<input type=\"hidden\" name=\"codAutor\" value=\"".$row['codAutor']."\"</input>";
+            echo "<input type=\"hidden\" name=\"CDD\" value=\"".$row['CDD']."\"</input>";
             echo "<input type=\"hidden\" name=\"opc\" value=\"del\"</input>";
             echo "</form>
                   </td>";

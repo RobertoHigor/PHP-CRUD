@@ -21,6 +21,12 @@
                                 <a href="AutorCadastro.php">Cadastrar</a>
                             </div>
                         </li>
+                        <li class="menu"><a href="ClassificacaoListar.php">Classificação</a>
+                            <div class="submenu">
+                                <a href="ClassificacaoListar.php">Listar</a>
+                                <a href="ClassificacaoCadastro.php">Cadastrar</a>
+                                </div>
+                        </li>
                         <li><a href="#biblioteca">Biblioteca</a></li>
                 </ul>
  </nav>

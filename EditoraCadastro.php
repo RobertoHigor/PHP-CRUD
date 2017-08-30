@@ -1,4 +1,4 @@
-<?php require "src/Editora.php" ?>
+<?php require_once "src/Editora.php" ?>
 
 <html>
     <!-- Menu !-->
@@ -9,42 +9,71 @@
     <?php 
     //CRIAR SESSAO E GUARDAR O CNPJ NA VARIAVEL NOME
     session_start();
-    $_SESSION['nome'] = $_POST['CNPJ'];
         if ($_POST){
-            $e = new Editora();
-            $e->setCNPJ($_POST['CNPJ']);
-            $e->setNomeFantasia($_POST['nomeFantasia']);
-            $e->setEmail ($_POST['email']);
-            $e->setTelefone($_POST['telefone']);
-            $e->setEndereco($_POST['endereco']);
+            $_SESSION['editora'] = $_POST;
+            $e = new Editora();             
+            if ($_SESSION['editora']['opc'] == "Cadastrar") {  
+                          
+                $e->setCNPJ($_SESSION['editora']['CNPJ']);
+                $e->setNomeFantasia($_SESSION['editora']['nomeFantasia']);
+                $e->setEmail($_SESSION['editora']['email']);
+                $e->setTelefone($_SESSION['editora']['telefone']);
+                $e->setEndereco($_SESSION['editora']['endereco']);
 
-            $e->inserir($e);
+                $e->inserir($e);
+
+            }else if ($_SESSION['editora']['opc'] == "alt" || $_SESSION['editora']['opc']= "Alterar"){
+                        
+                    $e->setCNPJ($_SESSION['editora']['CNPJ']);
+                    $e->listarPorId($e);
+
+                if ($_SESSION['editora']['opc'] == "Alterar"){ 
+
+                    $e->setCNPJ($_SESSION['editora']['CNPJ']);
+                    $e->setNomeFantasia($_SESSION['editora']['nomeFantasia']);
+                    $e->setEmail($_SESSION['editora']['email']);
+                    $e->setTelefone($_SESSION['editora']['telefone']);
+                    $e->setEndereco($_SESSION['editora']['endereco']);
+                    $e->alterar($e);
+                }
+            }
         }
     ?>
         <form action = "EditoraCadastro.php" method="post">    
             <fieldset>
-            <legend> Autor </legend>          
+            <legend> Editora </legend>          
             <p class="linha">
-                <label for="CNPJ">CNPJ: </label><input type="number" id ="CNPJ" name="CNPJ"></imput>
+                <label for="CNPJ">CNPJ: </label><input type="text" id="CNPJ" name="CNPJ" 
+                <?php 
+                if ($_POST && $_SESSION['editora']['opc'] == "alt"){
+                    echo "readonly=\"readonly\"";
+                    echo "value=".$e->getCNPJ()."";
+                } 
+                    ?>
+                    ></input>
             </p>
             <p class="linha">
-                <label for="nomeFantasia">Nome Fantasia: </label><input type="text" id ="nomeFantasia" name="nomeFantasia"></imput>
+                <label for="nomeFantasia">Nome Fantasia: </label><input type="text" id ="nomeFantasia" name="nomeFantasia" value="<?php  if ($_POST && $_SESSION['editora']['opc'] == "alt"){echo $e->getNomeFantasia();} ?>"></input>
             </p>            
             <p class="linha">        
-                <label for="email">Email: </label><input type="email" id ="email" name="email"></input>
+                <label for="email">Email: </label><input type="text" id ="email" name="email" value="<?php  if ($_POST && $_SESSION['editora']['opc'] == "alt"){echo $e->getEmail();} ?>"></input>
             </p>
             <p class="linha">
-                <label for="telefone">Telefone: </label><input type="number" id ="telefone" name="telefone"></input>
+                <label for="telefone">Telefone: </label><input type="text" id ="telefone" name="telefone" value="<?php  if ($_POST && $_SESSION['editora']['opc'] == "alt"){echo $e->getTelefone();} ?>"></input>
                             </p>
             <p class="linha">
-                <label for="endereco">Endereço: </label><input type="text" id ="endereco" name="endereco"></input>   
-                <input type="submit" value="Cadastrar"></input>   
+                <label for="endereco">Endereço: </label><input type="text" id ="endereco" name="endereco" value="<?php  if ($_POST && $_SESSION['editora']['opc'] == "alt"){echo $e->getEndereco();} ?>"></input>   
+                <?php if($_POST && $_SESSION['editora']['opc'] == "alt"){
+                    echo "<input type=\"submit\" name=\"opc\" value=\"Alterar\"></input>";
+                    }else{
+                        echo "<input type=\"submit\" name=\"opc\" value=\"Cadastrar\"></input>";
+                    }?> 
             </p>
             </fieldset>   
         </form>
     </div> <!-- fim div conteudo !-->
 
     <!--Rodapé-->
-    <?php include "footer.php" ?>
+    <?php //include "footer.php" ?>
     <!--Fim do Rodapé-->
 </html>

@@ -35,6 +35,6 @@
     </div> <!-- fim div conteudo !-->
 
     <!--Rodapé-->
-    <?php include "footer.php" ?>
+    <?php //include "footer.php" ?>
     <!--Fim do Rodapé-->
 </html>

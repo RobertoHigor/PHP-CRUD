@@ -76,13 +76,12 @@ body {
     min-height: 100%;   
 }
 
-.conteudo {
-    margin:auto;
-    padding:1vh;
-    position:relative;
-    width:50%;
-    height:85%;   
+.conteudo {    
+    margin:auto;   
+    padding:1vh;   
+    padding-bottom:120px; 
 }
+
 
 table {
     /* Tirar o gap da borda*/
@@ -93,8 +92,9 @@ table {
 td, th {    
     text-align: left;
     padding: 8px;
-    padding-right: 7vw;
+    padding-right: 1vw;
     border-right: 1px solid rgba(0, 0, 0, 0.29);
+    
 }
 
 tr:nth-child(even) {
@@ -118,7 +118,7 @@ footer {
 /* Espaço entre os inputs e colocar como uma célula da tabela*/
 input {
     margin: 5;
-    display:table-cell;
+    display: table-cell;
 }
 
 input[type=submit]{
@@ -137,7 +137,7 @@ label{
 }
 
 form {
-    display:table;
+    display:table-cell;
 }
 
 /* cada tag linha é uma linha inteira da tabela */
