@@ -44,7 +44,9 @@
             <legend> Classificação </legend>          
         
             <p class="linha">               
-                <label for="CDD">CDD: </label><input type="text" id ="CDD" name="CDD" value="<?php if($_POST && $_SESSION['classificacao']['opc'] == "alt"){echo $_SESSION['classificacao']['CDD'] ;} ?>"></input>    
+                <label for="CDD">CDD: </label><input type="text" id ="CDD" name="CDD" <?php if($_POST && $_SESSION['classificacao']['opc'] == "alt"){
+                    echo "readonly=\"readonly\"";
+                    echo "value=".$c->getCDD(). "" ;} ?>></input>    
             </p>
           
             <p class="linha">

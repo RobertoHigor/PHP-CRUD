@@ -1,5 +1,5 @@
 <?php
-include "Banco.php";
+require_once "Banco.php";
 
 class Editora{
     private $CNPJ;
@@ -131,6 +131,15 @@ class Editora{
 
     public function listar(){
         $stmt = $this->con->prepare("SELECT CNPJ, nomeFantasia, email, telefone, endereco FROM Editora");
+        $stmt->execute();
+        return $stmt->get_result();
+    }
+
+    public function listarLivros(Editora $e){
+        $stmt = $this->con->prepare("SELECT nome, idioma, preco FROM Livro
+                                    WHERE editora_CNPJ IN (SELECT CNPJ 
+                                                            FROM Editora WHERE CNPJ = ? )");
+        $stmt->bind_param('i', $e->CNPJ);
         $stmt->execute();
         return $stmt->get_result();
     }

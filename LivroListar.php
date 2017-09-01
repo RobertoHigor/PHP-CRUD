@@ -7,6 +7,18 @@
     <!-- Fim do menu -->
 
      <!-- Conteúdo do site !-->
+    <?php
+    session_start();
+    $l = new Livro();
+    if($_POST){
+        $_SESSION['livro'] = $_POST;
+        if ($_SESSION['livro']['opc'] == 'del'){
+            $l->setISBN($_SESSION['livro']['ISBN']);
+            $l->deletarPorId($l);
+        }
+    }
+    ?>
+
     <div class = "conteudo">  
     <table>
         <tr>
@@ -20,7 +32,7 @@
         </tr>
           
     <?php 
-        $l = new Livro();
+        
         $res = $l->listar();
        
         while ($row = $res->fetch_assoc()) {
@@ -33,11 +45,21 @@
                     "<td>" . $row['autor_codAutor'] ."</td>".
                     "<td>" . $row['classificacao_CDD']. "</td>";   
             echo "<td>
-                <form method=\"post\" action=\"AutorEditar.php\">";
-            echo "<input type=\"hidden\" name=\"codAutor\" value=\"".$row['ISBN']."\"</input>";
+                <form method=\"post\" action=\"LivroCadastro.php\">";
+            echo "<input type=\"hidden\" name=\"ISBN\" value=\"".$row['ISBN']."\"</input>";
+
+            //botão de editar com variável OPC escondida "alt"
+            echo "<input type=\"hidden\" name=\"opc\" value=\"alt\"</input>";
             echo "<input type=\"submit\" value=\"Editar\"></input>";
-            echo "</form>
-                  </td>";
+            echo "</form>";
+            
+            //Botão de deletar
+            echo "<form method=\"post\" action=\"#\"><input type=\"submit\" value=\"Deletar\"></input>";
+            echo "<input type=\"hidden\" name=\"ISBN\" value=\"".$row['ISBN']."\"</input>";
+            echo "<input type=\"hidden\" name=\"opc\" value=\"del\"</input>";
+            echo "</form>";
+
+            echo "</td>";
             echo "</tr>";
                
         }

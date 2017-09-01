@@ -1,4 +1,4 @@
-<?php require_once "src/Autor.php"?>
+<?php require_once "src/Editora.php"?>
 
 <html>
     <!-- Menu !-->
@@ -10,31 +10,31 @@
 
     <?php 
        //Criando objeto
-        $a = new Autor(); 
+        $e = new Editora(); 
 
         //Se está recebendo algum valor de post, usar.
         if ($_POST) {     
-            $a->setCodAutor($_POST['AutorID']);
+            $e->setCNPJ($_POST['CNPJID']);
         }
 
         //Guardar os livros relacionados ao ID do objeto
-        $resLivro = $a->listarLivros($a);        
+        $resLivro = $e->listarLivros($e);        
         //Listar todos os objetos
-        $resAutor = $a->listar();
+        $resEditora = $e->listar();
         
         //Listar apenas o objeto correspondente ao id
-        $a->listarPorId($a);     
+        $e->listarPorId($e);     
         
         ?>
 
     <!-- Formulário para enviar id -->
-    <form action="AutorLivros.php" method="POST">
-        <select name="AutorID">        
+    <form action="EditoraLivros.php" method="POST">
+        <select name="CNPJID">        
 
             <?php             
-            while ($row = $resAutor->fetch_assoc()){
+            while ($row = $resEditora->fetch_assoc()){
                 //imprimir no echo os objetos
-                echo "<option value=\"".$row['codAutor']."\">" .$row['nome'] . "</option>";                              
+                echo "<option value=\"".$row['CNPJ']."\">" .$row['nomeFantasia'] . "</option>";                              
             }
             ?>
             
@@ -42,7 +42,7 @@
         <input type="submit" value="Pesquisar"></input>
     </form> 
 
-    <h1><?php echo $a->getNome(); ?></h1>
+    <h1><?php echo $e->getNomeFantasia(); ?></h1>
         <br>
     <table>
         <tr>

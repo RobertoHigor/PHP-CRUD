@@ -48,9 +48,14 @@
             echo "<input type=\"submit\" value=\"Editar\"></input></form>";
             echo "<form method=\"post\" action\"#\"><input type=\"submit\" value=\"Deletar\"></input>";
             echo "<input type=\"hidden\" name=\"CNPJ\" value=\"".$row['CNPJ']."\"</input>";
-            echo "<input type=\"hidden\" name=\"opc\" value=\"del\"</input>";
-            echo "</form>
-                  </td>";
+            echo "<input type=\"hidden\" name=\"opc\" value=\"del\"</input></form>";
+
+            echo "<form method=\"post\" action=\"EditoraLivros.php\">
+            <input type=\"submit\" value=\"Ver Livros\"></input>";
+            echo "<input type=\"hidden\" name=\"CNPJID\" value=\"".$row['CNPJ']."\"</input>
+            </form>";
+
+            echo "</td>";
             echo "</tr>";
                
         }

@@ -1,5 +1,6 @@
 <?php
-include "Banco.php";
+require_once "Banco.php";
+
 class Autor{
     private $codAutor;
     private $nome;
@@ -109,7 +110,8 @@ class Autor{
 
     //Listagens
     public function listar(){
-        $stmt = $this->con->prepare("SELECT codAutor, nome, email, telefone FROM Autor");$stmt->execute();         
+        $stmt = $this->con->prepare("SELECT codAutor, nome, email, telefone FROM Autor");
+        $stmt->execute();         
         return $stmt->get_result();
     }
 
@@ -128,7 +130,14 @@ class Autor{
             $this->telefone = $telefone;
         }
     }
+
+    //Listar livros associado ao autor
+    public function listarLivros(Autor $a){
+        $stmt = $this->con->prepare("SELECT nome, idioma, preco FROM Livro 
+                                            WHERE autor_codAutor IN (SELECT codAutor FROM Autor WHERE codAutor = ?)");
+        $stmt->bind_param('i', $a->codAutor);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
 }
-
-
 ?>

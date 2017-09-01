@@ -1,5 +1,5 @@
 <?php 
-include "Banco.php";
+require_once "Banco.php";
 class Aluno {
     public $matricula;
     private $nome; 

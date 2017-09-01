@@ -12,7 +12,7 @@
     if ($_POST){
         $_SESSION['classificacao'] = $_POST;
         if ($_SESSION['classificacao']['opc'] == "del"){
-            $C->setCodClassificacao($_SESSION['classificacao']['CDD']);
+            $C->setCDD($_SESSION['classificacao']['CDD']);
             $C->deletarPorID($C);
         }
     }
@@ -43,6 +43,11 @@
             echo "<form method=\"post\" action\"#\"><input type=\"submit\" value=\"Deletar\"></input>";
             echo "<input type=\"hidden\" name=\"CDD\" value=\"".$row['CDD']."\"</input>";
             echo "<input type=\"hidden\" name=\"opc\" value=\"del\"</input>";
+            echo "</form>";
+
+            echo "<form method=\"post\" action=\"ClassificacaoLivros.php\">
+            <input type=\"submit\" value=\"Ver Livros\"></input>";
+            echo "<input type=\"hidden\" name=\"CDDID\" value=\"".$row['CDD']."\"</input>";
             echo "</form>
                   </td>";
             echo "</tr>";

@@ -1,4 +1,4 @@
-<?php require_once "src/Autor.php"?>
+<?php require_once "src/Classificacao.php"?>
 
 <html>
     <!-- Menu !-->
@@ -9,32 +9,25 @@
     <div class = "conteudo">  
 
     <?php 
-       //Criando objeto
-        $a = new Autor(); 
+       
+        $c = new Classificacao(); 
 
-        //Se está recebendo algum valor de post, usar.
         if ($_POST) {     
-            $a->setCodAutor($_POST['AutorID']);
+            $c->setCDD($_POST['CDDID']);
         }
-
-        //Guardar os livros relacionados ao ID do objeto
-        $resLivro = $a->listarLivros($a);        
-        //Listar todos os objetos
-        $resAutor = $a->listar();
-        
-        //Listar apenas o objeto correspondente ao id
-        $a->listarPorId($a);     
+        $resLivro = $c->listarLivros($c);        
+        $resAutor = $c->listar();         
+        $c->listarPorId($c);     
         
         ?>
 
-    <!-- Formulário para enviar id -->
-    <form action="AutorLivros.php" method="POST">
-        <select name="AutorID">        
+
+    <form action="ClassificacaoLivros.php" method="POST">
+        <select name="CDDID">        
 
             <?php             
             while ($row = $resAutor->fetch_assoc()){
-                //imprimir no echo os objetos
-                echo "<option value=\"".$row['codAutor']."\">" .$row['nome'] . "</option>";                              
+                echo "<option value=\"".$row['CDD']."\">" .$row['nome'] . "</option>";                              
             }
             ?>
             
@@ -42,7 +35,7 @@
         <input type="submit" value="Pesquisar"></input>
     </form> 
 
-    <h1><?php echo $a->getNome(); ?></h1>
+    <h1><?php echo $c->getNome(); ?></h1>
         <br>
     <table>
         <tr>
@@ -55,7 +48,6 @@
         
        
         <?php while ($row = $resLivro->fetch_assoc()) {
-            //imprimir os livros associados
             echo "<tr>". 
                     "<td>" . $row['nome'] . "</td>".
                     "<td>" . $row['idioma'] ."</td>". 

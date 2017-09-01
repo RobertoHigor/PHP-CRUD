@@ -40,13 +40,26 @@
             echo "<td>
                 <form method=\"post\" action=\"AutorCadastro.php\">";
             echo "<input type=\"hidden\" name=\"codAutor\" value=\"".$row['codAutor']."\"</input>";
+            
+            //botão de editar com variável OPC escondida "alt"
             echo "<input type=\"hidden\" name=\"opc\" value=\"alt\"</input>";
-            echo "<input type=\"submit\" value=\"Editar\"></input></form>";
-            echo "<form method=\"post\" action\"#\"><input type=\"submit\" value=\"Deletar\"></input>";
+            echo "<input type=\"submit\" value=\"Editar\"></input>";
+            echo "</form>";
+            
+            //Botão de deletar
+            echo "<form method=\"post\" action=\"#\"><input type=\"submit\" value=\"Deletar\"></input>";
             echo "<input type=\"hidden\" name=\"codAutor\" value=\"".$row['codAutor']."\"</input>";
             echo "<input type=\"hidden\" name=\"opc\" value=\"del\"</input>";
-            echo "</form>
-                  </td>";
+            echo "</form>";
+            
+            //Botão de mostrar livros associados
+            echo "<form method=\"post\" action=\"AutorLivros.php\">
+            <input type=\"submit\" value=\"Ver Livros\"></input>";
+            echo "<input type=\"hidden\" name=\"AutorID\" value=\"".$row['codAutor']."\"</input>
+            </form>";
+        
+
+            echo "</td>";
             echo "</tr>";
                
         }

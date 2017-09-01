@@ -68,3 +68,13 @@
     <?php //include "footer.php" ?>
     <!--Fim do Rodapé-->
 </html>
+
+
+private $ISBN;
+    private $nome;
+    private $idioma;
+    private $preco;
+
+    private $editora_CNPJ;
+    private $autor_codAutor;
+    private $classificacao_CDD;

@@ -8,7 +8,12 @@
 <nav class="head-nav">
                 <ul>
                         <li><a href="index.php">Início</a></li>
-                        <li><a href="Livros.php">Livros</a></li>                        
+                        <li class="menu"><a href="LivroListar.php">Livros</a>
+                            <div class="submenu">
+                                <a href="LivroListar.php">Listar</a>
+                                <a href="LivroCadastro.php">Cadastrar</a>
+                            </div>
+                        </li>                     
                         <li class="menu"><a href="EditoraListar.php">Editora</a>
                             <div class="submenu">
                                 <a href="EditoraListar.php">Listar</a>

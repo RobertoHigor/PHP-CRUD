@@ -1,5 +1,5 @@
 <?php
-include "Banco.php";
+require_once "Banco.php";
 
 class Classificacao{
     private $CDD;
@@ -51,9 +51,9 @@ class Classificacao{
 
     //Alterar
     public function alterar(Classificacao $c){
-        $stmt = $this->con->prepare("UPDATE Classificacao SET CDD = ?, NOME = ? WHERE CDD = ?");
+        $stmt = $this->con->prepare("UPDATE Classificacao SET NOME = ? WHERE CDD = ?");
         $this->isNull($c);
-        $stmt->bind_param('ss', $c->CDD, $c->nome, $c->CDD);
+        $stmt->bind_param('ss', $c->nome, $c->CDD);
 
         if ($stmt->execute()){
             echo "Classificação atualizada";
@@ -94,6 +94,14 @@ class Classificacao{
             $this->nome = $nome;
         }
 
+    }
+
+    public function listarLivros(Classificacao $c){
+        $stmt = $this->con->prepare("SELECT nome, idioma, preco FROM Livro
+                                     WHERE classificacao_CDD IN (SELECT CDD FROM Classificacao WHERE CDD = ?)");
+        $stmt->bind_param('s', $c->CDD);
+        $stmt->execute();
+        return $stmt->get_result();
     }
 
 }
