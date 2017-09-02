@@ -1,7 +1,7 @@
 <?php require_once "src/Livro.php";
       require_once "src/Autor.php";
       require_once "src/Editora.php";
-      require_once "src/Classificacao.php"; ?>
+      rsequire_once "src/Classificacao.php"; ?>
 
 <html>
     <!-- Menu !-->
@@ -10,7 +10,7 @@
     <!-- Conteúdo do site !-->
     <div class = "conteudo">  
     <?php 
-    session_start();  
+       
         $a = new Autor();
         $resAutor = $a->listar();
 

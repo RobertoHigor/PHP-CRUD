@@ -32,7 +32,19 @@
                                 <a href="ClassificacaoCadastro.php">Cadastrar</a>
                                 </div>
                         </li>
-                        <li><a href="#biblioteca">Biblioteca</a></li>
+                        <li><a href="Biblioteca.php">Biblioteca</a></li>
                 </ul>
  </nav>
+ <?php
+ session_start();
+ if (basename($_SERVER['PHP_SELF']) != 'index.php'){
+     echo "Dentro do !=".$_SERVER['PHP_SELF'];
+     if (!isset($_SESSION['email'])) {
+        //echo "Dentro do location";
+        header("location:index.php");
+        die();
+    }
+ }
+
+ ?>
 <!-- Fim do menu -->

@@ -7,7 +7,7 @@
 
      <!-- Conteúdo do site !-->
     <?php
-    session_start();
+     
     $C = new Classificacao();
     if ($_POST){
         $_SESSION['classificacao'] = $_POST;

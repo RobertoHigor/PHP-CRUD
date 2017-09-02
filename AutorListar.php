@@ -7,7 +7,7 @@
 
      <!-- Conteúdo do site !-->
     <?php
-    session_start();
+     
     $a = new Autor();
     if ($_POST){
         $_SESSION['autor'] = $_POST;

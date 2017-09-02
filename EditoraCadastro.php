@@ -8,7 +8,7 @@
     <div class = "conteudo">  
     <?php 
     //CRIAR SESSAO E GUARDAR O CNPJ NA VARIAVEL NOME
-    session_start();
+     
         if ($_POST){
             $_SESSION['editora'] = $_POST;
             $e = new Editora();             

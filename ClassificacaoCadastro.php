@@ -7,7 +7,7 @@
     <!-- Conteúdo do site !-->
     <div class = "conteudo">  
     <?php 
-    session_start();  
+       
         if ($_POST){
             //Salvar os dados na sessão classificacao
             $_SESSION['classificacao'] = $_POST; 

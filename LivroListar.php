@@ -1,5 +1,6 @@
 <!-- Importando a classe livro -->
-<?php require "src/Livro.php" ?>
+<?php require_once "src/Livro.php";
+      require_once "src/Pedido.php" ?>
 
 <html>
     <!-- Menu !-->
@@ -8,13 +9,21 @@
 
      <!-- Conteúdo do site !-->
     <?php
-    session_start();
+    echo $_SESSION['email'];
     $l = new Livro();
+    $p = new Pedido();
+
     if($_POST){
         $_SESSION['livro'] = $_POST;
         if ($_SESSION['livro']['opc'] == 'del'){
             $l->setISBN($_SESSION['livro']['ISBN']);
             $l->deletarPorId($l);
+        }
+
+        if ($_SESSION['livro']['opc'] == 'buy'){
+            $p->setUsuarioEmail($_SESSION['email']);
+            $p->setLivroISBN($_SESSION['livro']['ISBN']);        
+            $p->inserir($p);
         }
     }
     ?>
@@ -57,6 +66,12 @@
             echo "<form method=\"post\" action=\"#\"><input type=\"submit\" value=\"Deletar\"></input>";
             echo "<input type=\"hidden\" name=\"ISBN\" value=\"".$row['ISBN']."\"</input>";
             echo "<input type=\"hidden\" name=\"opc\" value=\"del\"</input>";
+            echo "</form>";
+
+            //Botão de Comprar
+            echo "<form method=\"post\" action=\"#\"><input type=\"submit\" value=\"Comprar\"></input>";
+            echo "<input type=\"hidden\" name=\"ISBN\" value=\"".$row['ISBN']."\"</input>";
+            echo "<input type=\"hidden\" name=\"opc\" value=\"buy\"</input>";
             echo "</form>";
 
             echo "</td>";

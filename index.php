@@ -1,37 +1,38 @@
-<?php include "src/calculadora.php" ?>
-
+<?php require_once "src/Usuario.php"; ?>
 <html>
         <!-- Menu !-->
         <?php include "header.php" ?>
         <!-- Fim do menu -->
 
        <!-- Conteúdo do site !-->
-       <div class = "conteudo">
+       <?php
+        if ($_POST){
+                $u = new Usuario();
+                echo $_POST['senha'];
+                echo $_POST['email'];
+
+                $u->setEmail($_POST['email']);
+                $u->setSenha($_POST['senha']);
+                echo "Email no get " . $u->getEmail() ."   ";
+                if ($u->logar($u)){
+                        $_SESSION['email'] = $_POST['email'];
+                        header("location:LivroListar.php");
+                }
+        }
+        ?>
+       <div class ="conteudo">
                 <form action="#" method="post">
                         <fieldset>
-                                <legend> Campo </legend>
-                                <p id="linha">
-                                         <label for="n1">Numero 1</label><input type="number" id="n1" name="numero1" value=<?php echo $n1 ?> /> 
+                                <legend> Login </legend>
+                                <p class="linha">
+                                         <label for="email">Email:</label><input type="text" id="email" name="email" autocomplete="off"/> 
                                 </p>
-                                 <p id="linha">
-                                         <label for="n2">Numero 2</label><input type="number"name ="numero2" value=<?php echo $n2 ?> />     
+                                 <p class="linha">
+                                         <label for="senha">Senha:</label><input type="password" name ="senha" required autocomplete="off"/>     
                                 </p>             
-                                <input type="submit" name="enviar" value="Calcular" />  
+                                <input type="submit" name="login" value="Logar" />  
                         </fieldset>
-                </form>
-                Resultado <input type="number"name="resultado" value=<?php echo somar($n1, $n2) ?> />
-                
-                <?php
-                include "src/Aluno.php";              
-    $a = new Aluno();
-    $a->matricula = "102016-02";
-    $res = $a->listar();
-    
-
-    while ($row = $res->fetch_assoc()) {
-        echo "Nome = " . $row['nome'] . " Matricula = " .$row['matricula'] . "\n</br>";
-    }
-?>
+                </form>                      
         </div> <!-- fim div conteudo !-->
 
         <!--Rodapé-->

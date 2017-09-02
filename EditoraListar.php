@@ -7,7 +7,7 @@
 
      <!-- Conteúdo do site !-->
     <?php
-    session_start();
+     
     $e = new Editora();
     if ($_POST){
         $_SESSION['editora'] = $_POST;

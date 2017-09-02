@@ -10,6 +10,7 @@ class Livro{
     private $editora_CNPJ;
     private $autor_codAutor;
     private $classificacao_CDD;
+    private $con = NULL;
 
     public function __construct(){
         $this->con = new Banco();
@@ -97,7 +98,7 @@ class Livro{
     public function listar(){
         $stmt = $this->con->prepare("SELECT ISBN, nome, idioma, preco, editora_CNPJ, autor_codAutor, classificacao_CDD FROM Livro");
         if(!$stmt->execute()){         
-            echo "Erro na atualização: ". $stmt->error;
+            echo "Erro na listagem: ". $stmt->error;
         }  
         return $stmt->get_result();
     }
