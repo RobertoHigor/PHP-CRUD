@@ -1,7 +1,7 @@
 <?php require_once "src/Livro.php";
       require_once "src/Autor.php";
       require_once "src/Editora.php";
-      rsequire_once "src/Classificacao.php"; ?>
+      require_once "src/Classificacao.php"; ?>
 
 <html>
     <!-- Menu !-->
@@ -48,7 +48,7 @@
                 if ($_SESSION['livro']['opc'] == "Alterar"){                               
                     $l->setISBN($_SESSION['livro']['ISBN']);
                     $l->setNome($_SESSION['livro']['nome']);
-                    $l->setIdioma($_SESSION['livro']['idioma']);
+                    $l->setidioma($_SESSION['livro']['idioma']);
                     $l->setPreco($_SESSION['livro']['preco']); 
                     $l->setEditora_CNPJ($_SESSION['livro']['editora_CNPJ']); 
                     $l->setAutorCodAutor($_SESSION['livro']['autor_codAutor']);
@@ -72,7 +72,7 @@
                 <label for="preco">Preço: </label><input type="text" id ="preco" name="preco" value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getPreco();} ?>"></input>
             </p>           
             <p class="linha">
-                <label for="telefone">Telefone: </label><input type="text" id ="telefone" name="telefone" value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getTelefone();} ?>"></input>
+                <label for="idioma">idioma: </label><input type="text" id ="idioma" name="idioma" value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getIdioma();} ?>"></input>
             </p>
             <p class="">
                 <select name="AutorID">        

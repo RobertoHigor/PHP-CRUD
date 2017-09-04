@@ -104,11 +104,13 @@ class Livro{
     }
 
     public function listarPorId(Livro $l){
-        $stmt = $this->con->prepare("SELECT nome, idioma, preco, editora_CNPJ, autor_codAutor, classificacao_CDD FROM Autor WHERE ISBN = ?");
+        $stmt = $this->con->prepare("SELECT ISBN, nome, idioma, preco, editora_CNPJ, autor_codAutor, classificacao_CDD FROM Livro WHERE ISBN = ?");
         $stmt->bind_param('i', $l->ISBN);
         $stmt->execute();
-        $stmt->bind_result($nome, $idioma, $preco, $editora_CNPJ, $autor_codAutor, $classificacao_CDD);
-        while ($stmt->fetch()) {    
+
+        $stmt->bind_result($ISBN, $nome, $idioma, $preco, $editora_CNPJ, $autor_codAutor, $classificacao_CDD);
+        while ($stmt->fetch()) { 
+            $this->ISBN = $ISBN;
             $this->nome = $nome;
             $this->idioma = $idioma;
             $this->preco = $preco;
