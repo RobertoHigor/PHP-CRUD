@@ -50,8 +50,8 @@ class Livro{
         $this->nome = $vnome;
     }
 
-    public function setISBN($vISB){
-        $this->ISBN = $vISB;
+    public function setISBN($vISBN){
+        $this->ISBN = $vISBN;
     }
 
     public function setIdioma($vIdioma){
@@ -67,7 +67,7 @@ class Livro{
     }
 
     public function setAutorCodAutor($vAutorCodAutor){
-        $this->autor_codAutor = $autor_codAutor;
+        $this->autor_codAutor = $vAutorCodAutor;
     }
 
     public function setClassificacaoCDD($vClassificacaoCDD){
@@ -86,7 +86,7 @@ class Livro{
     public function inserir(Livro $l){
         $stmt = $this->con->prepare("INSERT INTO Livro (ISBN, nome, idioma, preco, editora_CNPJ, autor_codAutor, classificacao_CDD) VALUES (?, ?, ?, ?, ?, ?, ?)");    
         $l = $this->isNull($l);  
-        $stmt->bind_param('ssi', $l->ISBN, $l->nome, $l->idioma, $l->preco, $l->editora_CNPJ, $l->autor_codAutor, $l->classificacao_CDD);       
+        $stmt->bind_param('issdiis', $l->ISBN, $l->nome, $l->idioma, $l->preco, $l->editora_CNPJ, $l->autor_codAutor, $l->classificacao_CDD);       
         if($stmt->execute()){
             echo "Livro cadastrado";
         }else {
@@ -96,7 +96,7 @@ class Livro{
 
     //Listagens
     public function listar(){
-        $stmt = $this->con->prepare("SELECT ISBN, nome, idioma, preco, editora_CNPJ, autor_codAutor, classificacao_CDD FROM Livro");
+        $stmt = $this->con->prepare("SELECT ISBN, nome, idioma, preco, editora_CNPJ, autor_codAutor, classificacao_CDD FROM Livro ORDER BY nome ASC");
         if(!$stmt->execute()){         
             echo "Erro na listagem: ". $stmt->error;
         }  
@@ -134,15 +134,15 @@ class Livro{
             $l->idioma = NULL;
         }
 
-        if($l->preco){
+        if(!$l->preco){
             $l->preco = NULL;
         }
 
-        if($l->editora_CNPJ){
+        if(!$l->editora_CNPJ){
             $l->editora_CNPJ = NULL;
         }
 
-        if($l->autor_codAutor){
+        if(!$l->autor_codAutor){
             $l->autor_codAutor = NULL;
         }
 
@@ -153,9 +153,9 @@ class Livro{
     }
 
     public function alterar(Livro $l){
-        $stmt = $this->con->prepare("UPDATE Livro SET ISBN = ?, nome = ?, idioma = ?, preco = ? WHERE codAutor = ?"); 
-        $a = $this->isNull($a);
-        $stmt->bind_param('issf', $l->ISBN, $l->nome, $l->idioma, $l->preco);  
+        $stmt = $this->con->prepare("UPDATE Livro SET nome = ?, idioma = ?, preco = ?, editora_CNPJ = ?, autor_codAutor = ?, classificacao_CDD = ? WHERE ISBN = ?"); 
+        $l = $this->isNull($l);
+        $stmt->bind_param('ssdiisi', $l->nome, $l->idioma, $l->preco, $l->editora_CNPJ, $l->autor_codAutor, $l->classificacao_CDD, $l->ISBN);  
        
         if($stmt->execute()){
             echo "Livro atualizado" .$stmt->error;

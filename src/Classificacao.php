@@ -78,7 +78,7 @@ class Classificacao{
 
     //Listagens
     public function listar(){
-        $stmt = $this->con->prepare("SELECT CDD, nome FROM Classificacao");
+        $stmt = $this->con->prepare("SELECT CDD, nome FROM Classificacao ORDER BY CDD ASC");
         $stmt->execute();
         return $stmt->get_result();
     }

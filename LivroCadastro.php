@@ -29,8 +29,10 @@
             if ($_SESSION['livro']['opc'] == "Cadastrar") {  
                 //Pegar os dados recebidos e inserir no banco             
                 $l->setISBN($_SESSION['livro']['ISBN']);
+                echo "TESTE@@@@@@@@@@@: ".$_SESSION['livro']['ISBN'];
                 $l->setNome($_SESSION['livro']['nome']);
                 $l->setPreco($_SESSION['livro']['preco']);
+                $l->setidioma($_SESSION['livro']['idioma']);
 
                 $l->setEditoraCNPJ($_SESSION['livro']['editora_CNPJ']);
                 $l->setAutorCodAutor($_SESSION['livro']['autor_codAutor']);
@@ -50,7 +52,8 @@
                     $l->setNome($_SESSION['livro']['nome']);
                     $l->setidioma($_SESSION['livro']['idioma']);
                     $l->setPreco($_SESSION['livro']['preco']); 
-                    $l->setEditora_CNPJ($_SESSION['livro']['editora_CNPJ']); 
+                    
+                    $l->setEditoraCNPJ($_SESSION['livro']['editora_CNPJ']); 
                     $l->setAutorCodAutor($_SESSION['livro']['autor_codAutor']);
                     $l->setClassificacaoCDD($_SESSION['livro']['classificacao_CDD']);      
                     $l->alterar($l);
@@ -63,56 +66,59 @@
             <legend> Livro </legend>    
 
             <p class="linha">        
-                <label for="ISBN">ISBN: </label><input type="text" id ="ISBN" name="ISBN" value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getISBN();} ?>"></input>
+                <label for="ISBN">ISBN: </label><input type="number" id="ISBN" name="ISBN"<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo "readonly ";}?>value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getISBN();} ?>"></input>
             </p>
             <p class="linha">
                 <label for="nome">Nome: </label><input type="text" id ="nome" name="nome" value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getNome();} ?>"></input>      
             </p> 
             <p class="linha">        
-                <label for="preco">Preço: </label><input type="text" id ="preco" name="preco" value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getPreco();} ?>"></input>
+                <label for="preco">Preço: </label><input type="text" id ="preco" name="preco" placeholder="00.00" value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getPreco();} ?>"></input>
             </p>           
             <p class="linha">
                 <label for="idioma">idioma: </label><input type="text" id ="idioma" name="idioma" value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getIdioma();} ?>"></input>
             </p>
             <p class="">
-                <select name="AutorID">        
+                <select name="autor_codAutor">        
 
                     <?php             
                     while ($row = $resAutor->fetch_assoc()){
                         //imprimir no echo os objetos
-                        echo "<option value=\"".$row['codAutor']."\">" .$row['nome'] . "</option>";                              
+                        echo "<option"; 
+                        if($_POST && $row['codAutor'] == $l->getCodAutor()){echo " selected";}
+                        echo " value=\"".$row['codAutor']."\">" .$row['nome'] . "</option>";                              
                     }
                     ?>
                 
                 </select>
             </p>
             <p class="">
-                <select name="CNPJID">        
+                <select name="editora_CNPJ">        
 
                     <?php             
                     while ($row = $resEditora->fetch_assoc()){
                         //imprimir no echo os objetos
-                        echo "<option value=\"".$row['CNPJ']."\">" .$row['nomeFantasia'] . "</option>";                              
+                        echo "<option";
+                        if($_POST && $row['CNPJ'] == $l->getCNPJ()){echo " selected";}
+                         echo " value=\"".$row['CNPJ']."\">" .$row['nomeFantasia'] . "</option>";                              
                     }
                     ?>                    
                 
                 </select>
             </p>
             <p class="">
-                <select name="CDDID">        
+                <select name="classificacao_CDD">        
 
                     <?php             
                     while ($row = $resClassificacao->fetch_assoc()){
                         //imprimir no echo os objetos
-                        echo "<option value=\"".$row['CDD']."\">" .$row['nome'] . "</option>";                              
+                        echo "<option";
+                        if($_POST && $row['CDD'] == $l->getCDD()){echo " selected";}
+                        echo " value=\"".$row['CDD']."\">" .$row['nome'] . "</option>";                              
                     }
                     ?>
                 
                 </select>
             </p>           
-
-                <input type="hidden" name="ISBN" value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $_SESSION['livro']['ISBN']  ;} ?>"></input>
-
                 <?php if($_POST && $_SESSION['livro']['opc'] == "alt"){
                     echo "<input type=\"submit\" name=\"opc\" value=\"Alterar\"></input>";
                     }else{

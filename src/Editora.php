@@ -130,7 +130,7 @@ class Editora{
     }
 
     public function listar(){
-        $stmt = $this->con->prepare("SELECT CNPJ, nomeFantasia, email, telefone, endereco FROM Editora");
+        $stmt = $this->con->prepare("SELECT CNPJ, nomeFantasia, email, telefone, endereco FROM Editora ORDER BY nomeFantasia ASC");
         $stmt->execute();
         return $stmt->get_result();
     }

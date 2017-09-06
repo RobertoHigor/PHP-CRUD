@@ -8,15 +8,18 @@
        <?php
         if ($_POST){
                 $u = new Usuario();
-                echo $_POST['senha'];
-                echo $_POST['email'];
 
                 $u->setEmail($_POST['email']);
                 $u->setSenha($_POST['senha']);
-                echo "Email no get " . $u->getEmail() ."   ";
-                if ($u->logar($u)){
-                        $_SESSION['email'] = $_POST['email'];
-                        header("location:LivroListar.php");
+                //echo "Email no get " . $u->getEmail() ."   ";
+
+                if ($_POST['opc'] == "Logar"){                      
+                        if ($u->logar($u)){
+                                $_SESSION['email'] = $_POST['email'];
+                                header("location:LivroListar.php");
+                        }
+                }else{              
+                         header("location:UsuarioCadastro.php");
                 }
         }
         ?>
@@ -25,12 +28,13 @@
                         <fieldset>
                                 <legend> Login </legend>
                                 <p class="linha">
-                                         <label for="email">Email:</label><input type="text" id="email" name="email" autocomplete="off"/> 
+                                         <label for="email">Email:</label><input type="text" id="email" name="email"/> 
                                 </p>
                                  <p class="linha">
-                                         <label for="senha">Senha:</label><input type="password" name ="senha" required autocomplete="off"/>     
+                                         <label for="senha">Senha:</label><input type="password" name ="senha"/>     
                                 </p>             
-                                <input type="submit" name="login" value="Logar" />  
+                                <input type="submit" name="opc" value="Logar" />  
+                                <input type="submit" name"opc" value="Cadastrar"/>
                         </fieldset>
                 </form>                      
         </div> <!-- fim div conteudo !-->

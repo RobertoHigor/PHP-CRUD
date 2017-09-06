@@ -38,9 +38,9 @@
             echo "<tr>". 
                     "<td>" . $row['CNPJ'] . "</td>".
                     "<td>" . $row['nomeFantasia'] ."</td>". 
-                    "<td>" . $row['email'] ."</td>". 
-                    "<td>" . $row['endereco'] ."</td>". 
-                    "<td>" . $row['telefone']. "</td>";   
+                    "<td>" . $row['email'] ."</td>".                     
+                    "<td>" . $row['telefone']. "</td>".
+                    "<td>" . $row['endereco'] ."</td>"; 
             echo "<td>
                 <form method=\"post\" action=\"EditoraCadastro.php\">";
             echo "<input type=\"hidden\" name=\"CNPJ\" value=\"".$row['CNPJ']."\"</input>";

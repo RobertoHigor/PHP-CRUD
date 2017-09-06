@@ -110,7 +110,7 @@ class Autor{
 
     //Listagens
     public function listar(){
-        $stmt = $this->con->prepare("SELECT codAutor, nome, email, telefone FROM Autor");
+        $stmt = $this->con->prepare("SELECT codAutor, nome, email, telefone FROM Autor ORDER BY nome ASC");
         $stmt->execute();         
         return $stmt->get_result();
     }
