@@ -11,9 +11,9 @@
         if ($_POST){
             //Salvar os dados na sessão usuario
             $_SESSION['usuario'] = $_POST;        
-            ECHO "email: ".$_SESSION['usuario']['email']; 
-            echo "Data antes: ". $_SESSION['usuario']['dataNascimento'];
-            echo "\nData Depois: ".date('d-m-Y', $_SESSION['usuario']['dataNascimento']);
+            //ECHO "email: ".$_SESSION['usuario']['email']; 
+           // echo "Data antes: ". $_SESSION['usuario']['dataNascimento']. " ";
+            
             $u = new Usuario();
 
             //Se clicou em cadastrar, entrar no IF.            
@@ -25,7 +25,10 @@
                 $u->setEmail($_SESSION['usuario']['email']);
                 $u->setSenha($_SESSION['usuario']['senha']);
                 $u->setCPF($_SESSION['usuario']['CPF']);
-                $u->setDataNasc($_SESSION['usuario']['dataNascimento']);
+
+                $nascimento = date("Y-m-d", strtotime(str_replace("/", "-", $_SESSION['usuario']['dataNascimento'])));
+               // echo "Data depois: ". $nascimento;
+                $u->setDataNasc($nascimento);
 
                 
 
@@ -44,7 +47,9 @@
                     $u->setEmail($_SESSION['usuario']['email']);
                     $u->setSenha($_SESSION['usuario']['senha']);
                     $u->setCPF($_SESSION['usuario']['CPF']);
-                    $u->setDataNasc($_SESSION['usuario']['dataNascimento']);     
+
+                    $nascimento = date("Y-m-d", strtotime($_SESSION['usuario']['dataNascimento']));                  
+                    $u->setDataNasc($nascimento);     
                     $u->alterar($u);
             }
         }
@@ -74,7 +79,7 @@
                 <label for="sobrenome">Sobrenome: </label><input type="text" id ="sobrenome" name="sobrenome" value="<?php if($_POST && $_SESSION['usuario']['opc'] == "alt"){echo $u>getSobrenome();} ?>"></input>
             </p>
             <p class="linha">
-                <label for="dataNascimento">Data de Nascimento: </label><input type=date id ="dataNascimento" name="dataNascimento" value="<?php if($_POST && $_SESSION['usuario']['opc'] == "alt"){echo $u>getDataNascimento();} ?>"></input>
+                <label for="dataNascimento">Data de Nascimento: </label><input type=date id ="dataNascimento" name="dataNascimento" placeholder="dd/mm/aaaa"value="<?php if($_POST && $_SESSION['usuario']['opc'] == "alt"){echo $u>getDataNascimento();} ?>"></input>
             </p>
 
             <p class="linha">       

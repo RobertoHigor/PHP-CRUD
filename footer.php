@@ -1,6 +1,6 @@
  <!--Rodapé-->
 <footer class="footer">
-                Livraria Fictícia
+                Ebook Store
 </footer>
 </body>
 <!--Fim do Rodapé-->

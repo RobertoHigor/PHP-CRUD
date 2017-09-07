@@ -62,9 +62,9 @@ class Pedido{
         $stmt->bind_param('si', $p->usuario_email, $p->livro_ISBN);
 
         if($stmt->execute()){
-            echo "Pedido concluido";
+            echo "<p class=\"sucess\">Pedido concluido</p>";
         }else {
-            echo "Erro no cadastro: ". $stmt->error;
+            echo "<p class=\"erro\">Erro no cadastro: ". $stmt->error. "</p>";
         }   
     }
 
@@ -73,7 +73,7 @@ class Pedido{
         $stmt = $this->con->prepare("SELECT usuario_email, livro_ISBN, Livro.nome, data, hora FROM Pedido, Livro, Usuario WHERE usuario_email = email AND email = ? AND livro_ISBN = ISBN");
 
         if(!$stmt->execute()){         
-            echo "Erro na listagem: ". $stmt->error;
+            echo "<p class=\"erro\">Erro na listagem: ". $stmt->error."</p>";
         }  
         return $stmt->get_result();
     }

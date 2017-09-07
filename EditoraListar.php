@@ -30,8 +30,8 @@
         </tr>
           
     <?php 
-    //CONTINUAR SESSAO
-        
+   
+        //Salvar os livros da editora na variavel $res
         $res = $e->listar();
        
         while ($row = $res->fetch_assoc()) {
@@ -52,6 +52,7 @@
 
             echo "<form method=\"post\" action=\"EditoraLivros.php\">
             <input type=\"submit\" value=\"Ver Livros\"></input>";
+            echo "<input type=\"hidden\" name=\"opc\" value=\"foo\"</input>";
             echo "<input type=\"hidden\" name=\"CNPJID\" value=\"".$row['CNPJ']."\"</input>
             </form>";
 

@@ -95,9 +95,9 @@ class Editora{
         $stmt->bind_param('ssisi', $e->nomeFantasia, $e->email, $e->telefone, $e->endereco,  $e->CNPJ);   
 
         if ($stmt->execute()){
-            echo "Editora atualizado";
+            echo "<p class=\"sucess\">Editora atualizado</p>";
         }else{
-            echo "Erro na atualização: " . $stmt->error;
+            echo "<p class=\"erro\">Erro na atualização: " . $stmt->error."</p>";
         }
     }
    
@@ -107,9 +107,9 @@ class Editora{
         $e = $this->isNull($e);  
         $stmt->bind_param('issis', $e->CNPJ, $e->nomeFantasia, $e->email, $e->telefone, $e->endereco);       
         if($stmt->execute()){
-            echo "Editora cadastrado";
+            echo "<p class=\"sucess\">Editora cadastrado</p>";
         }else {
-            echo "Erro no cadastro: ". $stmt->error;
+            echo "<p class=\"erro\">Erro no cadastro: ". $stmt->error. "</p>";
         }         
     }
 
@@ -136,7 +136,7 @@ class Editora{
     }
 
     public function listarLivros(Editora $e){
-        $stmt = $this->con->prepare("SELECT nome, idioma, preco FROM Livro
+        $stmt = $this->con->prepare("SELECT ISBN, nome, idioma, preco FROM Livro
                                     WHERE editora_CNPJ IN (SELECT CNPJ 
                                                             FROM Editora WHERE CNPJ = ? )");
         $stmt->bind_param('i', $e->CNPJ);

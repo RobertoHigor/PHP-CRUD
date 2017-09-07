@@ -85,9 +85,9 @@ class Autor{
        
         //Tentar executar o SQL
         if($stmt->execute()){
-            echo "Autor atualizado";
+            echo "<p class=\"sucess\">Autor atualizado</p>";
         }else {
-            echo "Erro na atualização: ". $stmt->error;
+            echo "<p class=\"erro\">Erro na atualização: ". $stmt->error."</p>";
         }  
     }
 
@@ -102,9 +102,9 @@ class Autor{
         
         //Tentar executar o SQL
         if($stmt->execute()){
-            echo "Autor cadastrado";
+            echo "<p class=\"sucess\">Autor cadastrado</p>";
         }else {
-            echo "Erro no cadastro: ". $stmt->error;
+            echo "<p class=\"erro\">Erro no cadastro: ". $stmt->error."</p>";
         }         
     }
 
@@ -133,7 +133,7 @@ class Autor{
 
     //Listar livros associado ao autor
     public function listarLivros(Autor $a){
-        $stmt = $this->con->prepare("SELECT nome, idioma, preco FROM Livro 
+        $stmt = $this->con->prepare("SELECT ISBN, nome, idioma, preco FROM Livro 
                                             WHERE autor_codAutor IN (SELECT codAutor FROM Autor WHERE codAutor = ?)");
         $stmt->bind_param('i', $a->codAutor);
         $stmt->execute();

@@ -56,9 +56,9 @@ class Classificacao{
         $stmt->bind_param('ss', $c->nome, $c->CDD);
 
         if ($stmt->execute()){
-            echo "Classificação atualizada";
+            echo "<p class=\"sucess\">Classificação atualizada</p>";
         }else {
-            echo "Falha ao atualizar: " . $stmt->error;
+            echo "<p class=\"erro\">Falha ao atualizar: " . $stmt->error."</p>";
         }
     }
 
@@ -70,9 +70,9 @@ class Classificacao{
         $stmt->bind_param('ss', $c->CDD, $c->nome);
 
         if ($stmt->execute()){
-            echo "Classificação atualizada";
+            echo "<p class=\"sucess\">Classificação atualizada</p>";
         }else {
-            echo "Falha ao atualizar: " . $stmt->error;
+            echo "<p class=\"erro\">Falha ao atualizar: " . $stmt->error."</p>";
         }
     }
 
@@ -97,7 +97,7 @@ class Classificacao{
     }
 
     public function listarLivros(Classificacao $c){
-        $stmt = $this->con->prepare("SELECT nome, idioma, preco FROM Livro
+        $stmt = $this->con->prepare("SELECT ISBN, nome, idioma, preco FROM Livro
                                      WHERE classificacao_CDD IN (SELECT CDD FROM Classificacao WHERE CDD = ?)");
         $stmt->bind_param('s', $c->CDD);
         $stmt->execute();

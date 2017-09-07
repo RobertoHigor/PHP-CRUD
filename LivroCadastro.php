@@ -29,7 +29,7 @@
             if ($_SESSION['livro']['opc'] == "Cadastrar") {  
                 //Pegar os dados recebidos e inserir no banco             
                 $l->setISBN($_SESSION['livro']['ISBN']);
-                echo "TESTE@@@@@@@@@@@: ".$_SESSION['livro']['ISBN'];
+                //echo "TESTE@@@@@@@@@@@: ".$_SESSION['livro']['ISBN'];
                 $l->setNome($_SESSION['livro']['nome']);
                 $l->setPreco($_SESSION['livro']['preco']);
                 $l->setidioma($_SESSION['livro']['idioma']);

@@ -1,4 +1,5 @@
-<?php require_once "src/Editora.php"?>
+<?php require_once "src/Editora.php";
+      require_once "src/Pedido.php";?>
 
 <html>
     <!-- Menu !-->
@@ -11,10 +12,17 @@
     <?php 
        //Criando objeto
         $e = new Editora(); 
-
+        $p = new Pedido();
+       
         //Se está recebendo algum valor de post, usar.
-        if ($_POST) {     
-            $e->setCNPJ($_POST['CNPJID']);
+        if ($_POST){                
+          if ($_POST['opc'] == "Comprar"){             
+                $p->setUsuarioEmail($_SESSION['email']);
+                $p->setLivroISBN($_POST['ISBN']);        
+                $p->inserir($p);
+          }
+                $e->setCNPJ($_POST['CNPJID']);
+            
         }
 
         //Guardar os livros relacionados ao ID do objeto
@@ -31,11 +39,15 @@
     <form action="EditoraLivros.php" method="POST">
         <select name="CNPJID">        
 
-            <?php             
-            while ($row = $resEditora->fetch_assoc()){
-                //imprimir no echo os objetos
-                echo "<option value=\"".$row['CNPJ']."\">" .$row['nomeFantasia'] . "</option>";                              
-            }
+            <?php        
+                 
+            while ($row2 = $resEditora->fetch_assoc()){
+                //imprimir no echo os objetos              
+                echo "<option"; 
+                if($_POST && $row2['CNPJ'] == $e->getCNPJ()){echo " selected";}
+                echo " value=\"".$row2['CNPJ']."\">" .$row2['nomeFantasia'] . "</option>";                               
+                }   
+                echo "<input type=\"hidden\" name=\"opc\" value=\"foo\"></input>";  
             ?>
             
         </select>
@@ -60,7 +72,14 @@
                     "<td>" . $row['nome'] . "</td>".
                     "<td>" . $row['idioma'] ."</td>". 
                     "<td>" . $row['preco']. "</td>";               
-            echo "</tr>";
+            echo "<td>";
+            //Botão de Comprar
+            echo "<form method=\"post\" action=\"#\">";
+            echo "<input type=\"hidden\" name=\"ISBN\" value=\"".$row['ISBN']."\"</input>";            
+            echo "<input type=\"hidden\" name=\"CNPJID\" value=\"".$row2['CNPJ']."\"</input>";              
+            echo "<input type=\"submit\" name=\"opc\" value=\"Comprar\"></input>";
+            echo "</form>";
+            echo "</td></tr>";
                
         }
 ?>

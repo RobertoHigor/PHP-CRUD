@@ -9,7 +9,7 @@
 
      <!-- Conteúdo do site !-->
     <?php
-    echo $_SESSION['email'];
+    //echo $_SESSION['email'];
     $l = new Livro();
     $p = new Pedido();
 
@@ -71,7 +71,7 @@
             //Botão de Comprar
             echo "<form method=\"post\" action=\"#\"><input type=\"submit\" value=\"Comprar\"></input>";
             echo "<input type=\"hidden\" name=\"ISBN\" value=\"".$row['ISBN']."\"</input>";
-            echo "<input type=\"hidden\" name=\"opc\" value=\"buy\"</input>";
+            echo "<input type=\"hidden\" name=\"opc\" value=\"buy\"></input>";
             echo "</form>";
 
             echo "</td>";
@@ -83,6 +83,6 @@
     </div> <!-- fim div conteudo !-->
 
     <!--Rodapé-->
-    <?php include "footer.php" ?>
+    <?php //include "footer.php" ?>
     <!--Fim do Rodapé-->
 </html>

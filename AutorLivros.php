@@ -1,4 +1,5 @@
-<?php require_once "src/Autor.php"?>
+<?php require_once "src/Autor.php";
+      require_once "src/Pedido.php";?>
 
 <html>
     <!-- Menu !-->
@@ -11,9 +12,14 @@
     <?php 
        //Criando objeto
         $a = new Autor(); 
-
+        $p = new Pedido();
         //Se está recebendo algum valor de post, usar.
         if ($_POST) {     
+            if ($_POST['opc'] == "Comprar"){
+                $p->setUsuarioEmail($_SESSION['email']);
+                $p->setLivroISBN($_POST['ISBN']);        
+                $p->inserir($p);
+            }
             $a->setCodAutor($_POST['AutorID']);
         }
 
@@ -32,10 +38,13 @@
         <select name="AutorID">        
 
             <?php             
-            while ($row = $resAutor->fetch_assoc()){
-                //imprimir no echo os objetos
-                echo "<option value=\"".$row['codAutor']."\">" .$row['nome'] . "</option>";                              
+            while ($row2 = $resAutor->fetch_assoc()){
+                //imprimir no echo os objetos               
+                echo "<option"; 
+                if($_POST && $row2['codAutor'] == $a->getCodAutor()){echo " selected";}
+                echo " value=\"".$row2['codAutor']."\">" .$row2['nome'] . "</option>";                           
             }
+            echo "<input type=\"hidden\" name=\"opc\" value=\"foo\"></input>";
             ?>
             
         </select>
@@ -60,7 +69,14 @@
                     "<td>" . $row['nome'] . "</td>".
                     "<td>" . $row['idioma'] ."</td>". 
                     "<td>" . $row['preco']. "</td>";               
-            echo "</tr>";
+            echo "<td>";
+              //Botão de Comprar
+              echo "<form method=\"post\" action=\"#\">";
+              echo "<input type=\"hidden\" name=\"ISBN\" value=\"".$row['ISBN']."\"</input>";            
+              echo "<input type=\"hidden\" name=\"AutorID\" value=\"".$row2['codAutor']."\"</input>";              
+              echo "<input type=\"submit\" name=\"opc\" value=\"Comprar\"></input>";
+              echo "</form>";
+              echo "</td></tr>";
                
         }
 ?>

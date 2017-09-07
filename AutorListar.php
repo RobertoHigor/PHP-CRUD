@@ -55,6 +55,7 @@
             //Botão de mostrar livros associados
             echo "<form method=\"post\" action=\"AutorLivros.php\">
             <input type=\"submit\" value=\"Ver Livros\"></input>";
+            echo "<input type=\"hidden\" name=\"opc\" value=\"foo\"/>";
             echo "<input type=\"hidden\" name=\"AutorID\" value=\"".$row['codAutor']."\"</input>
             </form>";
         

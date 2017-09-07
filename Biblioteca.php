@@ -1,4 +1,5 @@
-<?php require_once "src/Usuario.php"?>
+<?php require_once "src/Usuario.php";
+      require_once "src/Pedido.php";?>
 
 <html>
     <!-- Menu !-->
@@ -11,22 +12,30 @@
     <?php 
        //Criando objeto
         $u = new Usuario(); 
+        $p = new Pedido();
 
-        //Se está recebendo algum valor de post, usar.
-          
-        $u->setEmail($_SESSION['email']);
+        //Se está recebendo algum valor de post, usar.          
+        $u->setEmail($_SESSION['email']);    
         
+        if ($_POST){
+            if ($_POST['opc'] == "del"){
 
-        //Guardar os livros relacionados ao ID do objeto
-        $resLivro = $u->listarLivros($u);        
+                $p->setLivroISBN($_POST['livro_ISBN']);
+                $p->setUsuarioEmail($_SESSION['email']);
 
-        //Listar apenas o objeto correspondente ao id
-        $u->listarPorId($u);     
-        
-        ?>
+                $p->deletarPorId($p);
+            }
+     }
+     
+    //Guardar os livros relacionados ao ID do objeto
+    $resLivro = $u->listarLivros($u);        
+    
+    //Listar apenas o objeto correspondente ao id
+    //$u->listarPorId($u); 
+    ?>
 
-    <h1>Usuário: <?php echo $u->getEmail(); ?></h1>
-        <p>Livros comprados:</p>
+    <h1>Usuário: <?php echo $u->getEmail(); ?></h1>   
+    </br>     
     <table>
         <tr>
             <th>Nome do Livro</th>
@@ -34,6 +43,7 @@
             <th>Preço</th>
             <th>Data</th>
             <th>Hora</th>
+            <th>Opções</th>
         </tr>
           
   
@@ -49,7 +59,12 @@
                     //E transforma as tring do banco em um timestamp unix  
                     "<td>" . date('Y-m-d', strtotime($row['data'])). "</td>" .     
                     "<td>" . date('H:i:s', strtotime($row['hora'])). "</td>";   
-            echo "</tr>";
+            echo "<td>";
+             //Botão de deletar
+             echo "<form method=\"post\" action=\"#\"><input type=\"submit\" value=\"Deletar\"></input>";
+             echo "<input type=\"hidden\" name=\"livro_ISBN\" value=\"".$row['livro_ISBN']."\"</input>";
+             echo "<input type=\"hidden\" name=\"opc\" value=\"del\"</input>";
+             echo "</form></td></tr>";
                
         }
 ?>

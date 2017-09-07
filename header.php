@@ -37,8 +37,8 @@
  </nav>
  <?php
  session_start();
- if (basename($_SERVER['PHP_SELF']) != 'index.php' || $_SERVER != 'AutorCadastro.php'){
-     echo "Dentro do !=".$_SERVER['PHP_SELF'];
+ if (basename($_SERVER['PHP_SELF']) != 'index.php' && basename($_SERVER['PHP_SELF']) != 'UsuarioCadastro.php'){
+     //echo "Dentro do !=".$_SERVER['PHP_SELF'];
      if (!isset($_SESSION['email'])) {
         //echo "Dentro do location";
         header("location:index.php");

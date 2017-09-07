@@ -91,7 +91,7 @@ class Usuario{
         if ($temEmail && $temSenha){
             $temRegistro = true;
         }else {
-            echo "Usuario ou senha inválido";
+            echo "<p class=\"erro\">Usuario ou senha inválido</p>";
         }
 
         return $temRegistro;
@@ -133,10 +133,10 @@ class Usuario{
     }
 
     public function listarLivros(Usuario $u){
-        $stmt = $this->con->prepare("SELECT usuario_email, livro_ISBN, Livro.nome, idioma, preco, data, hora FROM Pedido, Livro, Usuario WHERE usuario_email = email AND email = ? AND livro_ISBN = ISBN");
+        $stmt = $this->con->prepare("call livrosUsuario(?)");
         $stmt->bind_param('s', $u->email);
         $stmt->execute();
-        
+
         return $stmt->get_result();
     }
 
@@ -149,14 +149,22 @@ class Usuario{
         $stmt2 = $this->con->prepare("INSERT INTO Usuario (email, senha) VALUES (?, ?)");
         $stmt2->bind_param('ss', $u->email, $u->senha);   
 
-        if (!$stmt->execute() && !$stmt2->execute()){
-            echo "Erro ". $stmt->error . $stmt2->error;
-        }else {
-            
-            echo "Usuario Cadastrado";
+        if (!$stmt2->execute()){
+            echo "<p class=\"erro\"> Erro no Usuario". $stmt2->error. "</p>";
+        }
+
+        if (!$stmt->execute()){
+            echo "<p class=\"erro\">Erro no UsuarioCliente". $stmt->error. "</p>";
+            $this->deletar($u);
         }
     }
 
+    public function deletar(Usuario $u){
+        $stmt = $this->con->prepare("DELETE FROM Usuario WHERE email = ?");
+        $stmt->bind_param('s', $u->email);
+        $stmt->execute();
+    }
+    
     public function listarPorId(Usuario $u){
         $stmt = $this->con->prepare("SELECT email, senha FROM Usuario WHERE email = ?");
         $stmt->bind_param('s', $u->email);

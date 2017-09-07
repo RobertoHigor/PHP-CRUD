@@ -88,9 +88,9 @@ class Livro{
         $l = $this->isNull($l);  
         $stmt->bind_param('issdiis', $l->ISBN, $l->nome, $l->idioma, $l->preco, $l->editora_CNPJ, $l->autor_codAutor, $l->classificacao_CDD);       
         if($stmt->execute()){
-            echo "Livro cadastrado";
+            echo "<p class=\"sucess\">Livro cadastrado</p>";
         }else {
-            echo "Erro no cadastro: ". $stmt->error;
+            echo "<p class=\"erro\">Erro no cadastro: ". $stmt->error."</p>";
         }         
     }
 
@@ -98,7 +98,7 @@ class Livro{
     public function listar(){
         $stmt = $this->con->prepare("SELECT ISBN, nome, idioma, preco, editora_CNPJ, autor_codAutor, classificacao_CDD FROM Livro ORDER BY nome ASC");
         if(!$stmt->execute()){         
-            echo "Erro na listagem: ". $stmt->error;
+            echo "<p class=\"erro\">Erro na listagem: ". $stmt->error."</p>";
         }  
         return $stmt->get_result();
     }
@@ -158,9 +158,9 @@ class Livro{
         $stmt->bind_param('ssdiisi', $l->nome, $l->idioma, $l->preco, $l->editora_CNPJ, $l->autor_codAutor, $l->classificacao_CDD, $l->ISBN);  
        
         if($stmt->execute()){
-            echo "Livro atualizado" .$stmt->error;
+            echo "<p class=\"sucess\">Livro atualizado</p>" .$stmt->error;
         }else {
-            echo "Erro na atualização: ". $stmt->error;
+            echo "<p class=\"erro\">Erro na atualização: ". $stmt->error."</p>";
         }  
     }
 

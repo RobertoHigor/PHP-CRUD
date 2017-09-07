@@ -19,7 +19,7 @@ class Banco {
         $this->mysqli = new mysqli($ip, $usuario, $senha, $banco);
         
         if ($this->mysqli->connect_errno) {
-            echo "Falha ao conectar com o MYSQL: " . $this->mysqli->connect_error;
+            echo "<p class=\"erro\">Falha ao conectar com o MYSQL: " . $this->mysqli->connect_error."</p>";
         }   
         return $this->mysqli;
     }

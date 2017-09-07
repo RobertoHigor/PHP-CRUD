@@ -47,6 +47,7 @@
 
             echo "<form method=\"post\" action=\"ClassificacaoLivros.php\">
             <input type=\"submit\" value=\"Ver Livros\"></input>";
+            echo "<input type=\"hidden\" name=\"opc\" value=\"foo\"</input>";
             echo "<input type=\"hidden\" name=\"CDDID\" value=\"".$row['CDD']."\"</input>";
             echo "</form>
                   </td>";

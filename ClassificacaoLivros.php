@@ -1,4 +1,5 @@
-<?php require_once "src/Classificacao.php"?>
+<?php require_once "src/Classificacao.php";
+      require_once "src/Pedido.php";?>
 
 <html>
     <!-- Menu !-->
@@ -11,12 +12,18 @@
     <?php 
        
         $c = new Classificacao(); 
+        $p = new Pedido();
 
         if ($_POST) {     
+            if ($_POST['opc'] == "Comprar"){
+                $p->setUsuarioEmail($_SESSION['email']);
+                $p->setLivroISBN($_POST['ISBN']);        
+                $p->inserir($p);
+            }
             $c->setCDD($_POST['CDDID']);
         }
         $resLivro = $c->listarLivros($c);        
-        $resAutor = $c->listar();         
+        $resCDD = $c->listar();         
         $c->listarPorId($c);     
         
         ?>
@@ -26,9 +33,12 @@
         <select name="CDDID">        
 
             <?php             
-            while ($row = $resAutor->fetch_assoc()){
-                echo "<option value=\"".$row['CDD']."\">" .$row['nome'] . "</option>";                              
+            while ($row2 = $resCDD->fetch_assoc()){                    
+                echo "<option"; 
+                if($_POST && $row2['CDD'] == $c->getCDD()){echo " selected";}
+                echo " value=\"".$row2['CDD']."\">" .$row2['nome'] . "</option>";                         
             }
+            echo "<input type=\"hidden\" name=\"opc\" value=\"foo\"></input>";
             ?>
             
         </select>
@@ -52,7 +62,16 @@
                     "<td>" . $row['nome'] . "</td>".
                     "<td>" . $row['idioma'] ."</td>". 
                     "<td>" . $row['preco']. "</td>";               
-            echo "</tr>";
+            echo "</td>
+                  <td>";
+            //Botão de Comprar
+            
+            echo "<form method=\"post\" action=\"#\">";
+            echo "<input type=\"hidden\" name=\"ISBN\" value=\"".$row['ISBN']."\"</input>";            
+            echo "<input type=\"hidden\" name=\"CDDID\" value=\"".$row2['CDD']."\"</input>";              
+            echo "<input type=\"submit\" name=\"opc\" value=\"Comprar\"></input>";
+            echo "</form>";
+            echo "</td></tr>";
                
         }
 ?>
