@@ -73,6 +73,7 @@
                     "<td>" . $row['idioma'] ."</td>". 
                     "<td>" . $row['preco']. "</td>";               
             echo "<td>";
+            
             //Botão de Comprar
             echo "<form method=\"post\" action=\"#\">";
             echo "<input type=\"hidden\" name=\"ISBN\" value=\"".$row['ISBN']."\"</input>";            

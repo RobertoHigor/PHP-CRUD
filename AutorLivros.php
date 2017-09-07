@@ -10,16 +10,20 @@
     <div class = "conteudo">  
 
     <?php 
-       //Criando objeto
+       //Criando objeto Autor e Pedido
         $a = new Autor(); 
         $p = new Pedido();
+
         //Se está recebendo algum valor de post, usar.
         if ($_POST) {     
+            //Se o usuário clicou no botão de comprar, entrar no if
             if ($_POST['opc'] == "Comprar"){
                 $p->setUsuarioEmail($_SESSION['email']);
-                $p->setLivroISBN($_POST['ISBN']);        
+                $p->setLivroISBN($_POST['ISBN']);  
+                //Inserir o livro comprado no pedido associado ao email do usuário logado      
                 $p->inserir($p);
             }
+            //Setar o codAutor de acordo com o codAutor recebido do option select
             $a->setCodAutor($_POST['AutorID']);
         }
 
@@ -39,7 +43,7 @@
 
             <?php             
             while ($row2 = $resAutor->fetch_assoc()){
-                //imprimir no echo os objetos               
+                //imprimir no echo os objetos e selecionar o ultimo autor enviado              
                 echo "<option"; 
                 if($_POST && $row2['codAutor'] == $a->getCodAutor()){echo " selected";}
                 echo " value=\"".$row2['codAutor']."\">" .$row2['nome'] . "</option>";                           

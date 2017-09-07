@@ -10,7 +10,7 @@
     <!-- Conteúdo do site !-->
     <div class = "conteudo">  
     <?php 
-       
+       //Criar o objeto autor, editora e classificação
         $a = new Autor();
         $resAutor = $a->listar();
 
@@ -23,6 +23,8 @@
         if ($_POST){
             //Salvar os dados na sessão livro
             $_SESSION['livro'] = $_POST; 
+
+            //Criar o objeto de livro caso tenha recebido algum valor via post
             $l = new Livro();
 
             //Se clicou em cadastrar, entrar no IF.            
@@ -82,7 +84,7 @@
 
                     <?php             
                     while ($row = $resAutor->fetch_assoc()){
-                        //imprimir no echo os objetos
+                        //imprimir no echo os objetos autores do banco de dados
                         echo "<option"; 
                         if($_POST && $row['codAutor'] == $l->getCodAutor()){echo " selected";}
                         echo " value=\"".$row['codAutor']."\">" .$row['nome'] . "</option>";                              
@@ -96,7 +98,7 @@
 
                     <?php             
                     while ($row = $resEditora->fetch_assoc()){
-                        //imprimir no echo os objetos
+                        //imprimir no echo os objetos Editoras do banco de dados
                         echo "<option";
                         if($_POST && $row['CNPJ'] == $l->getCNPJ()){echo " selected";}
                          echo " value=\"".$row['CNPJ']."\">" .$row['nomeFantasia'] . "</option>";                              
@@ -110,7 +112,7 @@
 
                     <?php             
                     while ($row = $resClassificacao->fetch_assoc()){
-                        //imprimir no echo os objetos
+                        //imprimir no echo os objetos classificação do banco de dados
                         echo "<option";
                         if($_POST && $row['CDD'] == $l->getCDD()){echo " selected";}
                         echo " value=\"".$row['CDD']."\">" .$row['nome'] . "</option>";                              
@@ -119,6 +121,8 @@
                 
                 </select>
             </p>           
+
+            <!-- Mostrar o botão de alterar caso esteja vindo pela página de alteração. Caso contrário, mostrar o de cadastro -->
                 <?php if($_POST && $_SESSION['livro']['opc'] == "alt"){
                     echo "<input type=\"submit\" name=\"opc\" value=\"Alterar\"></input>";
                     }else{

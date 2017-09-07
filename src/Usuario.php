@@ -17,6 +17,7 @@ class Usuario{
         $this->con = new Banco();
     }
 
+//Sets
     public function setEmail($vEmail){
         $this->email = $vEmail;
     }
@@ -40,6 +41,7 @@ class Usuario{
         $this->CPF = $vCPF;
     }
 
+//Gets
     public function getEmail(){
         return $this->email;
     }
@@ -65,6 +67,7 @@ class Usuario{
     }
 
 //Comandos SQL
+    //Comando para checar se o login e senha digitados existe
     public function logar(Usuario $u){
         $stmt = $this->con->prepare("SELECT email, senha FROM Usuario WHERE email = ? AND senha = ?");
         $stmt->bind_param('ss', $u->email, $u->senha);
@@ -93,10 +96,11 @@ class Usuario{
         }else {
             echo "<p class=\"erro\">Usuario ou senha inválido</p>";
         }
-
+        //Retorna true se existe e false caso não exista. O valor é tratado no site.
         return $temRegistro;
     }
 
+    //Testar se algum campo está vazio
     public function isNull(Usuario $u){
         if (!$u->email){
             $u->email = NULL;
@@ -132,6 +136,8 @@ class Usuario{
         return $u;
     }
 
+//Listagens
+    //Utilizar o stored procedure para listar os livros comprados pelo usuário (associado ao email)
     public function listarLivros(Usuario $u){
         $stmt = $this->con->prepare("call livrosUsuario(?)");
         $stmt->bind_param('s', $u->email);
@@ -140,6 +146,7 @@ class Usuario{
         return $stmt->get_result();
     }
 
+    //Cadastrar um usuário do tipo cliente.
     public function inserirCliente(Usuario $u){
         $stmt = $this->con->prepare("INSERT INTO usuarioCliente (email, CPF, nome, sobrenome, dataNascimento) VALUES (?, ?, ?, ?, ?)");
         $u = $this->isNull($u);
@@ -153,12 +160,14 @@ class Usuario{
             echo "<p class=\"erro\"> Erro no Usuario". $stmt2->error. "</p>";
         }
 
+        //Caso não consiga inserir os dados do cliente, deletar seu cadastro da tabela Usuario.
         if (!$stmt->execute()){
             echo "<p class=\"erro\">Erro no UsuarioCliente". $stmt->error. "</p>";
             $this->deletar($u);
         }
     }
 
+    //Deletar o usuário do email especificado
     public function deletar(Usuario $u){
         $stmt = $this->con->prepare("DELETE FROM Usuario WHERE email = ?");
         $stmt->bind_param('s', $u->email);

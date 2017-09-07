@@ -11,7 +11,10 @@
      
         if ($_POST){
             $_SESSION['editora'] = $_POST;
-            $e = new Editora();             
+            //Criar o objeto Editora
+            $e = new Editora();  
+            
+            //Entrar se o usuário tiver clicado no botão Cadastrar
             if ($_SESSION['editora']['opc'] == "Cadastrar") {  
                           
                 $e->setCNPJ($_SESSION['editora']['CNPJ']);
@@ -21,12 +24,14 @@
                 $e->setEndereco($_SESSION['editora']['endereco']);
 
                 $e->inserir($e);
-
+            
+            //Entrar se o usuário tiver entrado na página via um link de alterar ou tiver clicado no botão de alterar
             }else if ($_SESSION['editora']['opc'] == "alt" || $_SESSION['editora']['opc']= "Alterar"){
                         
                     $e->setCNPJ($_SESSION['editora']['CNPJ']);
                     $e->listarPorId($e);
-
+                    
+            //Se o usuário tiver clicado em alterar, setar os valores do objeto e utilizar o método de alterar
                 if ($_SESSION['editora']['opc'] == "Alterar"){ 
 
                     $e->setCNPJ($_SESSION['editora']['CNPJ']);
@@ -63,6 +68,8 @@
                             </p>
             <p class="linha">
                 <label for="endereco">Endereço: </label><input type="text" id ="endereco" name="endereco" value="<?php  if ($_POST && $_SESSION['editora']['opc'] == "alt"){echo $e->getEndereco();} ?>"></input>   
+
+                <!-- Mostrar o botão de alterar caso esteja vindo pela página de alteração. Caso contrário, mostrar o de cadastro -->
                 <?php if($_POST && $_SESSION['editora']['opc'] == "alt"){
                     echo "<input type=\"submit\" name=\"opc\" value=\"Alterar\"></input>";
                     }else{

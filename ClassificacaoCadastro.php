@@ -28,7 +28,7 @@
               
                 $c->listarPorId($c);
 
-                //Se clicou em Alterar
+                //Se clicou em Alterar, entrar no if
                 if ($_SESSION['classificacao']['opc'] == "Alterar"){                    
 
                     $c->setCDD($_SESSION['classificacao']['CDD']);
@@ -43,7 +43,8 @@
             <fieldset>
             <legend> Classificação </legend>          
         
-            <p class="linha">               
+            <p class="linha">    
+            <!-- colocar o CDD em readonly para que o usuário não consiga alterar -->           
                 <label for="CDD">CDD: </label><input type="text" id ="CDD" name="CDD" <?php if($_POST && $_SESSION['classificacao']['opc'] == "alt"){
                     echo "readonly=\"readonly\"";
                     echo "value=".$c->getCDD(). "" ;} ?>></input>    
@@ -53,7 +54,7 @@
                  <label for="nome">Nome: </label><input type="text" id ="nome" name="nome" value="<?php if($_POST && $_SESSION['classificacao']['opc'] == "alt"){echo $c->getNome();} ?>"></input>  
 
                 <!--<input type="hidden" name="CDD" "></input>-->
-
+                <!-- Mostrar o botão de alterar caso esteja vindo pela página de alteração. Caso contrário, mostrar o de cadastro -->
                 <?php if($_POST && $_SESSION['classificacao']['opc'] == "alt"){
                     echo "<input type=\"submit\" name=\"opc\" value=\"Alterar\"></input>";
                     }else{

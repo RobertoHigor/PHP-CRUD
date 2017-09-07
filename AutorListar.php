@@ -9,8 +9,11 @@
     <?php
      
     $a = new Autor();
+    //Somente entrar no bloco se tiver recebido algo
     if ($_POST){
         $_SESSION['autor'] = $_POST;
+
+        //Caso tenha recebido o valor do botão de deletar, setar o codAutor no objeto e deletar ele.
         if ($_SESSION['autor']['opc'] == "del"){
             $a->setCodAutor($_SESSION['autor']['codAutor']);
             $a->deletarPorID($a);
@@ -30,6 +33,7 @@
     <?php 
     //CONTINUAR SESSAO
         
+        //Salvar a lista de autores na variável $res
         $res = $a->listar();
        
         while ($row = $res->fetch_assoc()) {

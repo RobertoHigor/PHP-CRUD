@@ -54,6 +54,7 @@
                 <label for="telefone">Telefone: </label><input type="text" id ="telefone" name="telefone" value="<?php if($_POST && $_SESSION['autor']['opc'] == "alt"){echo $a->getTelefone();} ?>"></input>
                 <input type="hidden" name="codAutor" value="<?php if($_POST && $_SESSION['autor']['opc'] == "alt"){echo $_SESSION['autor']['codAutor']  ;} ?>"></input>
 
+                <!-- Mostrar o botão de alterar caso esteja vindo pela página de alteração. Caso contrário, mostrar o de cadastro -->
                 <?php if($_POST && $_SESSION['autor']['opc'] == "alt"){
                     echo "<input type=\"submit\" name=\"opc\" value=\"Alterar\"></input>";
                     }else{

@@ -54,7 +54,7 @@ class Pedido{
         $stmt->execute();
     }
 
-    //Inserir
+    //Inserir utilizando das funções do BD para pegar a data e hora.
     public function inserir(Pedido $p){
         $stmt = $this->con->prepare("INSERT INTO Pedido (usuario_email, livro_ISBN, data, hora) VALUES (?, ?, CURDATE(), CURTIME())");
 

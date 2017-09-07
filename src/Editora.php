@@ -135,6 +135,7 @@ class Editora{
         return $stmt->get_result();
     }
 
+    //Listar os livros pertencentes a essa editora
     public function listarLivros(Editora $e){
         $stmt = $this->con->prepare("SELECT ISBN, nome, idioma, preco FROM Livro
                                     WHERE editora_CNPJ IN (SELECT CNPJ 

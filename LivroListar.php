@@ -10,16 +10,21 @@
      <!-- Conteúdo do site !-->
     <?php
     //echo $_SESSION['email'];
+
+    //Criar o objeto de livro e pedido
     $l = new Livro();
     $p = new Pedido();
 
     if($_POST){
         $_SESSION['livro'] = $_POST;
+
+        //entrar no if caso o usuário tenha clicado no botão deletar
         if ($_SESSION['livro']['opc'] == 'del'){
             $l->setISBN($_SESSION['livro']['ISBN']);
             $l->deletarPorId($l);
         }
 
+        //entrar no botão buy caso o usuário tenha clicado no botão comprar.
         if ($_SESSION['livro']['opc'] == 'buy'){
             $p->setUsuarioEmail($_SESSION['email']);
             $p->setLivroISBN($_SESSION['livro']['ISBN']);        

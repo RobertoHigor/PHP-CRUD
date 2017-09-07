@@ -6,6 +6,7 @@ class Banco {
     private $banco;
     private $mysqli;
 
+    //Conectar assim que for instanciado
     public function __construct() {
         $this->conectar();
     }
@@ -24,16 +25,22 @@ class Banco {
         return $this->mysqli;
     }
 
+    //Fechar a conexão
     public function close(){
         return $this->mysqli->close();
     }
+
+    //Retornar mensagem de erro
     public function error(){
         return $this->mysqli->connect_error;
     }
+
+    //Executar um query
     public function query($query){               
         return $this->mysqli->query($query);
     }
 
+    //Utilizar um prepared statement
     public function prepare($query){
         return $this->mysqli->prepare($query);       
     }

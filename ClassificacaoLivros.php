@@ -11,17 +11,24 @@
 
     <?php 
        
+       //Criar o objeto de classificação e pedido
         $c = new Classificacao(); 
         $p = new Pedido();
 
         if ($_POST) {     
+            //Se o usuário clicou no botão de comprar, entrar no if.
             if ($_POST['opc'] == "Comprar"){
                 $p->setUsuarioEmail($_SESSION['email']);
-                $p->setLivroISBN($_POST['ISBN']);        
+                $p->setLivroISBN($_POST['ISBN']);      
+                //Inserir o livo com o ISBN no pedido associado ao usuário logado pelo Email  
                 $p->inserir($p);
             }
+
+            //Atribuir o CDD do option select
             $c->setCDD($_POST['CDDID']);
         }
+
+        //Salvar em uma variável a lista de livros associado a classificação  e a lista de CDD para mostrar no option select
         $resLivro = $c->listarLivros($c);        
         $resCDD = $c->listar();         
         $c->listarPorId($c);     
@@ -32,7 +39,8 @@
     <form action="ClassificacaoLivros.php" method="POST">
         <select name="CDDID">        
 
-            <?php             
+            <?php           
+            //Imprimir selected caso o CDD seja igual ao enviado  
             while ($row2 = $resCDD->fetch_assoc()){                    
                 echo "<option"; 
                 if($_POST && $row2['CDD'] == $c->getCDD()){echo " selected";}
@@ -64,8 +72,8 @@
                     "<td>" . $row['preco']. "</td>";               
             echo "</td>
                   <td>";
-            //Botão de Comprar
-            
+
+            //Botão de Comprar            
             echo "<form method=\"post\" action=\"#\">";
             echo "<input type=\"hidden\" name=\"ISBN\" value=\"".$row['ISBN']."\"</input>";            
             echo "<input type=\"hidden\" name=\"CDDID\" value=\"".$row2['CDD']."\"</input>";              

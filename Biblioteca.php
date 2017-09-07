@@ -10,7 +10,7 @@
     <div class = "conteudo">  
 
     <?php 
-       //Criando objeto
+       //Criando objeto usuário e pedido
         $u = new Usuario(); 
         $p = new Pedido();
 
@@ -18,11 +18,12 @@
         $u->setEmail($_SESSION['email']);    
         
         if ($_POST){
+            //Se o usuário clicou no botão de deletar, entrar no if
             if ($_POST['opc'] == "del"){
 
                 $p->setLivroISBN($_POST['livro_ISBN']);
                 $p->setUsuarioEmail($_SESSION['email']);
-
+                //Deletar o usuário com o ISBN e Email do objeto
                 $p->deletarPorId($p);
             }
      }

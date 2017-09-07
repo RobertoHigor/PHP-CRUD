@@ -76,12 +76,12 @@ class Livro{
 
 //Comandos SQL
     //Delete
-
     public function deletarPorID(Livro $l){
         $stmt = $this->con->prepare("DELETE FROM Livro WHERE ISBN = ?");
         $stmt->bind_param('i', $l->ISBN);
         $stmt->execute();
     }
+
     //Inserir
     public function inserir(Livro $l){
         $stmt = $this->con->prepare("INSERT INTO Livro (ISBN, nome, idioma, preco, editora_CNPJ, autor_codAutor, classificacao_CDD) VALUES (?, ?, ?, ?, ?, ?, ?)");    
@@ -152,6 +152,7 @@ class Livro{
         return $l;
     }
 
+    //Alterar
     public function alterar(Livro $l){
         $stmt = $this->con->prepare("UPDATE Livro SET nome = ?, idioma = ?, preco = ?, editora_CNPJ = ?, autor_codAutor = ?, classificacao_CDD = ? WHERE ISBN = ?"); 
         $l = $this->isNull($l);

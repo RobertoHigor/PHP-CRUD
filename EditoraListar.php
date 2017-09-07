@@ -7,10 +7,14 @@
 
      <!-- Conteúdo do site !-->
     <?php
-     
+     //Criar o objeto editora
     $e = new Editora();
+
+    //Entrar no IF se estiver recebendo algo
     if ($_POST){
         $_SESSION['editora'] = $_POST;
+
+        //Entrar no if se o usuário tiver clicado no botão deletar
         if ($_SESSION['editora']['opc'] == "del"){
             $e->setCNPJ($_SESSION['editora']['CNPJ']);
             $e->deletarPorID($e);
@@ -41,15 +45,20 @@
                     "<td>" . $row['email'] ."</td>".                     
                     "<td>" . $row['telefone']. "</td>".
                     "<td>" . $row['endereco'] ."</td>"; 
+
+            //Alterar
             echo "<td>
                 <form method=\"post\" action=\"EditoraCadastro.php\">";
             echo "<input type=\"hidden\" name=\"CNPJ\" value=\"".$row['CNPJ']."\"</input>";
             echo "<input type=\"hidden\" name=\"opc\" value=\"alt\"</input>";
             echo "<input type=\"submit\" value=\"Editar\"></input></form>";
+
+            //Deletar
             echo "<form method=\"post\" action\"#\"><input type=\"submit\" value=\"Deletar\"></input>";
             echo "<input type=\"hidden\" name=\"CNPJ\" value=\"".$row['CNPJ']."\"</input>";
             echo "<input type=\"hidden\" name=\"opc\" value=\"del\"</input></form>";
 
+            //Ver livros associados
             echo "<form method=\"post\" action=\"EditoraLivros.php\">
             <input type=\"submit\" value=\"Ver Livros\"></input>";
             echo "<input type=\"hidden\" name=\"opc\" value=\"foo\"</input>";

@@ -95,7 +95,8 @@ class Classificacao{
         }
 
     }
-
+    
+    //Listar os livros pertencente a essa classificação
     public function listarLivros(Classificacao $c){
         $stmt = $this->con->prepare("SELECT ISBN, nome, idioma, preco FROM Livro
                                      WHERE classificacao_CDD IN (SELECT CDD FROM Classificacao WHERE CDD = ?)");

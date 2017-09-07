@@ -67,7 +67,7 @@
                 <label for="senha">Senha: </label><input type="password" id ="senha" name="senha" value="<?php if($_POST && $_SESSION['usuario']['opc'] == "alt"){echo $u>getSenha();} ?>"></input>
             </p>
 
-            <!-- Usuario-->
+            <!-- UsuarioCliente-->
             <p class="linha">
                 <label for="nome">Nome: </label><input type="text" id ="nome" name="nome" value="<?php if($_POST && $_SESSION['usuario']['opc'] == "alt"){echo $u>getNome();} ?>"></input>      
             </p>
@@ -83,7 +83,8 @@
             </p>
 
             <p class="linha">       
-
+            
+             <!-- Mostrar o botão de alterar caso esteja vindo pela página de alteração. Caso contrário, mostrar o de cadastro -->
                 <?php if($_POST && $_SESSION['usuario']['opc'] == "alt"){
                     echo "<input type=\"submit\" name=\"opc\" value=\"Alterar\"></input>";
                     }else{
