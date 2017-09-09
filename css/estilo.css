@@ -144,9 +144,15 @@ select{
 input[type=submit]:hover{
     background-color:#4E4D4D;
 }
+
 /* Colocar o nome (da label) como uma célula da tabela, para poder ajustar*/
 label{
     display:table-cell;
+}
+
+#sair {
+    display: inline;
+
 }
 
 form {

@@ -33,11 +33,12 @@
                                 </div>
                         </li>
                         <li><a href="Biblioteca.php">Biblioteca</a></li>
+                        <li><form id="sair" action="#" method="post"><input id="sair" type="submit" name="sair" value="sair"/></form></li>
                 </ul>
  </nav>
  <?php
  session_start();
- if (basename($_SERVER['PHP_SELF']) != 'index.php' && basename($_SERVER['PHP_SELF']) != 'UsuarioCadastro.php'){
+ if (basename($_SERVER['PHP_SELF']) != 'index.php' && basename($_SERVER['PHP_SELF']) != 'UsuarioCadastro.php' && basename($_SERVER['PHP_SELF']) != "UsuarioEditoraCadastro.php"){
      //echo "Dentro do !=".$_SERVER['PHP_SELF'];
      if (!isset($_SESSION['email'])) {
         //echo "Dentro do location";
@@ -45,6 +46,12 @@
         die();
     }
  }
+
+
+     if (isset($_POST['sair']) && $_POST['sair'] = 'sair') {         
+         header("location:index.php");
+         session_destroy();          
+     }
 
  ?>
 <!-- Fim do menu -->

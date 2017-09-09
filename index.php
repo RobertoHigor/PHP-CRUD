@@ -35,8 +35,12 @@
                                 </p>             
                                 <input type="submit" name="opc" value="Logar" />  
                                 <input type="submit" name"opc" value="Cadastrar"/>
+                                <p class="linha">
+                                        <a href="UsuarioEditoraCadastro.php">Clique aqui caso seja uma editora</a>
+                                </p>
                         </fieldset>
-                </form>                      
+                </form>         
+                         
         </div> <!-- fim div conteudo !-->
 
         <!--Rodapé-->

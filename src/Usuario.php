@@ -29,6 +29,14 @@ class Usuario{
         $this->nome = $vNome;
     }
 
+    public function setNomeFantasia($vNomeFantasia){
+        $this->nomeFantasia = $vNomeFantasia;
+    }
+
+    public function setCNPJ($vCNPJ){
+        $this->CNPJ = $vCNPJ;
+    }
+
     public function setSobrenome($vSobrenome){
         $this->sobrenome = $vSobrenome;
     }
@@ -64,6 +72,14 @@ class Usuario{
 
     public function getCPF(){
         return $this->CPF;
+    }
+
+    public function getNomeFantasia(){
+        return $this->nomeFantasia;
+    }
+
+    public function getCNPJ(){
+        return $this->CNPJ;
     }
 
 //Comandos SQL
@@ -152,6 +168,27 @@ class Usuario{
         $u = $this->isNull($u);
 
         $stmt->bind_param('sssss', $u->email, $u->CPF, $u->nome, $u->sobrenome, $u->dataNascimento);
+
+        $stmt2 = $this->con->prepare("INSERT INTO Usuario (email, senha) VALUES (?, ?)");
+        $stmt2->bind_param('ss', $u->email, $u->senha);   
+
+        if (!$stmt2->execute()){
+            echo "<p class=\"erro\"> Erro no Usuario". $stmt2->error. "</p>";
+        }
+
+        //Caso não consiga inserir os dados do cliente, deletar seu cadastro da tabela Usuario.
+        if (!$stmt->execute()){
+            echo "<p class=\"erro\">Erro no UsuarioCliente". $stmt->error. "</p>";
+            $this->deletar($u);
+        }
+    }
+
+    //Cadastrar um usuário do tipo Editora
+    public function inserirEditora(Usuario $u){
+        $stmt = $this->con->prepare("INSERT INTO usuarioEditora (email, CNPJ, nomeFantasia) VALUES (?, ?, ?)");
+        $u = $this->isNull($u);
+
+        $stmt->bind_param('sss', $u->email, $u->CNPJ, $u->nomeFantasia);
 
         $stmt2 = $this->con->prepare("INSERT INTO Usuario (email, senha) VALUES (?, ?)");
         $stmt2->bind_param('ss', $u->email, $u->senha);   
