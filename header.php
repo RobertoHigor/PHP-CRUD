@@ -33,7 +33,7 @@
                                 </div>
                         </li>
                         <li><a href="Biblioteca.php">Biblioteca</a></li>
-                        <li><form id="sair" action="#" method="post"><input id="sair" type="submit" name="sair" value="sair"/></form></li>
+                        <li><form id="sair" action="Index.php" method="post"><input id="sair" type="submit" name="sair" value="sair"/></form></li>
                 </ul>
  </nav>
  <?php

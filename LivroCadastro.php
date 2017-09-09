@@ -33,7 +33,7 @@
                 $l->setISBN($_SESSION['livro']['ISBN']);
                 //echo "TESTE@@@@@@@@@@@: ".$_SESSION['livro']['ISBN'];
                 $l->setNome($_SESSION['livro']['nome']);
-                $l->setPreco($_SESSION['livro']['preco']);
+                $l->setPreco(str_replace(",", ".", $_SESSION['livro']['preco']));
                 $l->setidioma($_SESSION['livro']['idioma']);
 
                 $l->setEditoraCNPJ($_SESSION['livro']['editora_CNPJ']);
@@ -53,7 +53,7 @@
                     $l->setISBN($_SESSION['livro']['ISBN']);
                     $l->setNome($_SESSION['livro']['nome']);
                     $l->setidioma($_SESSION['livro']['idioma']);
-                    $l->setPreco($_SESSION['livro']['preco']); 
+                    $l->setPreco(str_replace(",", ".", $_SESSION['livro']['preco'])); 
                     
                     $l->setEditoraCNPJ($_SESSION['livro']['editora_CNPJ']); 
                     $l->setAutorCodAutor($_SESSION['livro']['autor_codAutor']);
