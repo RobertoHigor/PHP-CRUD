@@ -47,7 +47,7 @@
     }
  }
 
-
+    //Destruir sessão se tiver clicado em sair
      if (isset($_POST['sair']) && $_POST['sair'] = 'sair') {         
          header("location:index.php");
          session_destroy();          
