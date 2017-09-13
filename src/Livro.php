@@ -120,6 +120,15 @@ class Livro{
         }
     }
 
+    public function listarPorString($string){
+        $stmt = $this->con->prepare("SELECT ISBN, nome, idioma, preco, editora_CNPJ, autor_codAutor, classificacao_CDD FROM Livro WHERE nome LIKE '%$string%' ORDER BY nome ASC");
+       
+        if(!$stmt->execute()){         
+            echo "<p class=\"erro\">Erro na listagem: ". $stmt->error."</p>";
+        }  
+        return $stmt->get_result();
+    }
+
     //Checar se tem valor nulo
     public function isNull(Livro $l){
         if (!$l->ISBN){

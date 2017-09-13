@@ -31,7 +31,20 @@
             $p->inserir($p);
         }
     }
+
+    if (isset($_GET['busca'])){
+        //echo $_GET['busca'];
+        $res = $l->listarPorString($_GET['busca']);
+    }else {
+        $res = $l->listar();
+    }
     ?>
+
+    <form action="#" method="GET">
+        Buscar Livro:
+        <input type="search" name="busca"/>
+        <input type="submit"/>
+    </form>
 
     <div class = "conteudo">  
     <table>
@@ -46,9 +59,6 @@
         </tr>
           
     <?php 
-        
-        $res = $l->listar();
-       
         while ($row = $res->fetch_assoc()) {
             echo "<tr>". 
                     "<td>" . $row['ISBN'] . "</td>".

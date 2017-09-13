@@ -48,10 +48,10 @@
                 <label for="nome">Nome: </label><input type="text" id ="nome" name="nome" value="<?php if($_POST && $_SESSION['autor']['opc'] == "alt"){echo $a->getNome();} ?>"></input>      
             </p>
             <p class="linha">        
-                <label for="email">Email: </label><input type="text" id ="email" name="email" value="<?php if($_POST && $_SESSION['autor']['opc'] == "alt"){echo $a->getEmail();} ?>"></input>
+                <label for="email">Email: </label><input type="text" placeholder="exemplo@exemplo.com" id ="email" name="email" value="<?php if($_POST && $_SESSION['autor']['opc'] == "alt"){echo $a->getEmail();} ?>"></input>
             </p>
             <p class="linha">
-                <label for="telefone">Telefone: </label><input type="text" id ="telefone" name="telefone" value="<?php if($_POST && $_SESSION['autor']['opc'] == "alt"){echo $a->getTelefone();} ?>"></input>
+                <label for="telefone">Telefone: </label><input type="number" id ="telefone" name="telefone" max="99999999999" placeholder="DDD + Numero" value="<?php if($_POST && $_SESSION['autor']['opc'] == "alt"){echo $a->getTelefone();} ?>"></input>
                 <input type="hidden" name="codAutor" value="<?php if($_POST && $_SESSION['autor']['opc'] == "alt"){echo $_SESSION['autor']['codAutor']  ;} ?>"></input>
 
                 <!-- Mostrar o botão de alterar caso esteja vindo pela página de alteração. Caso contrário, mostrar o de cadastro -->

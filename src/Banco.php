@@ -14,7 +14,7 @@ class Banco {
     private function conectar(){
         $ip = 'localhost';
         $usuario = 'root';
-        $senha = '26793653';
+        $senha = 'robeale123456';
         $banco = 'Livraria';
 
         $this->mysqli = new mysqli($ip, $usuario, $senha, $banco);

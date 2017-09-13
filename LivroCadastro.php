@@ -68,16 +68,16 @@
             <legend> Livro </legend>    
 
             <p class="linha">        
-                <label for="ISBN">ISBN: </label><input type="number" id="ISBN" name="ISBN"<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo "readonly ";}?>value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getISBN();} ?>"></input>
+                <label for="ISBN">ISBN: </label><input type="number" placeholder="Somente numeros" id="ISBN" name="ISBN"<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo "readonly ";}?>value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getISBN();} ?>"></input>
             </p>
             <p class="linha">
                 <label for="nome">Nome: </label><input type="text" id ="nome" name="nome" value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getNome();} ?>"></input>      
             </p> 
             <p class="linha">        
-                <label for="preco">Preço: </label><input type="text" id ="preco" name="preco" placeholder="00.00" value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getPreco();} ?>"></input>
+                <label for="preco">Preço: </label><input type="number" id ="preco" max="999" name="preco" placeholder="0,00" value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getPreco();} ?>"></input>
             </p>           
             <p class="linha">
-                <label for="idioma">idioma: </label><input type="text" id ="idioma" name="idioma" value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getIdioma();} ?>"></input>
+                <label for="idioma">idioma: </label><input type="text" id ="idioma" placeholder="Ex: Português" name="idioma" value="<?php if($_POST && $_SESSION['livro']['opc'] == "alt"){echo $l->getIdioma();} ?>"></input>
             </p>
             <p class="">
                 <select name="autor_codAutor">        

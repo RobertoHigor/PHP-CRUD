@@ -45,7 +45,7 @@
         
             <p class="linha">    
             <!-- colocar o CDD em readonly para que o usuário não consiga alterar -->           
-                <label for="CDD">CDD: </label><input type="text" id ="CDD" name="CDD" <?php if($_POST && $_SESSION['classificacao']['opc'] == "alt"){
+                <label for="CDD">CDD: </label><input type="text" id ="CDD" name="CDD" placeholder="Código da classificação" <?php if($_POST && $_SESSION['classificacao']['opc'] == "alt"){
                     echo "readonly=\"readonly\"";
                     echo "value=".$c->getCDD(). "" ;} ?>></input>    
             </p>
