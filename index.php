@@ -28,10 +28,10 @@
                         <fieldset>
                                 <legend> Login </legend>
                                 <p class="linha">
-                                         <label for="email">Email:</label><input type="text" id="email" name="email"/> 
+                                         <label for="email">Email:</label><input type="email" maxlength="70" id="email" name="email"/> 
                                 </p>
                                  <p class="linha">
-                                         <label for="senha">Senha:</label><input type="password" name ="senha"/>     
+                                         <label for="senha">Senha:</label><input type="password" maxlength="12" name ="senha"/>     
                                 </p>             
                                 <input type="submit" name="opc" value="Logar" />  
                                 <input type="submit" name"opc" value="Cadastrar"/>
