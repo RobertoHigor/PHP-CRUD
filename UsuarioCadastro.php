@@ -61,7 +61,7 @@
         
             
             <p class="linha">        
-                <label for="email">Email: </label><input type="email" id ="email" name="email" value="<?php if($_POST && $_SESSION['usuario']['opc'] == "alt"){echo $u>getEmail();} ?>"></input>
+                <label for="email">Email: </label><input type="email" placeholder="exemplo@exemplo" id="email" name="email" value="<?php if($_POST && $_SESSION['usuario']['opc'] == "alt"){echo $u>getEmail();} ?>"></input>
             </p>
             <p class="linha">
                 <label for="senha">Senha: </label><input type="password" id ="senha" name="senha" value="<?php if($_POST && $_SESSION['usuario']['opc'] == "alt"){echo $u>getSenha();} ?>"></input>
@@ -73,7 +73,7 @@
             </p>
           
             <p class="linha">
-                <label for="CPF">CPF: </label><input type="number" id ="CPF" name="CPF" value="<?php if($_POST && $_SESSION['usuario']['opc'] == "alt"){echo $u>getCPF();} ?>"></input>
+                <label for="CPF">CPF: </label><input type="number" id ="CPF" name="CPF" placeholder="Somente números" max="99999999999" value="<?php if($_POST && $_SESSION['usuario']['opc'] == "alt"){echo $u>getCPF();} ?>"></input>
             </p>
             <p class="linha">
                 <label for="sobrenome">Sobrenome: </label><input type="text" id ="sobrenome" name="sobrenome" value="<?php if($_POST && $_SESSION['usuario']['opc'] == "alt"){echo $u>getSobrenome();} ?>"></input>
